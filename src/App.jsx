@@ -1,3 +1,13 @@
+import { useState } from 'react'
+
+const navLinks = [
+  { href: '#summary', label: 'Summary' },
+  { href: '#solution', label: 'Solution' },
+  { href: '#market', label: 'Market' },
+  { href: '#roadmap', label: 'Roadmap' },
+  { href: '#closing', label: 'Positioning' },
+]
+
 const executiveSummaryPoints = [
   'Smart planning tools',
   'Verified vendor marketplace',
@@ -194,19 +204,41 @@ const futureVision = [
 ]
 
 function App() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
     <div className="page-shell">
       <header className="topbar">
-        <a className="brand-mark" href="#home" aria-label="OMA Events home">
-          <img className="brand-mark__logo" src="/oma-logo.jpeg" alt="OMA Events logo" />
-          <span className="brand-mark__name">OMA Events</span>
-        </a>
-        <nav className="topbar__nav" aria-label="Primary">
-          <a href="#summary">Summary</a>
-          <a href="#solution">Solution</a>
-          <a href="#market">Market</a>
-          <a href="#roadmap">Roadmap</a>
-          <a href="#closing">Positioning</a>
+        <div className="topbar__bar">
+          <a className="brand-mark" href="#home" aria-label="OMA Events home">
+            <img className="brand-mark__logo" src="/oma-logo.jpeg" alt="OMA Events logo" />
+            <span className="brand-mark__name">OMA Events</span>
+          </a>
+
+          <button
+            aria-controls="primary-navigation"
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            className={`topbar__toggle${menuOpen ? ' topbar__toggle--open' : ''}`}
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
+
+        <nav
+          id="primary-navigation"
+          className={`topbar__nav${menuOpen ? ' topbar__nav--open' : ''}`}
+          aria-label="Primary"
+        >
+          {navLinks.map((link) => (
+            <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>
+              {link.label}
+            </a>
+          ))}
         </nav>
       </header>
 
@@ -462,10 +494,10 @@ function App() {
             </div>
             {projections.map((item) => (
               <div className="projection-table__row" role="row" key={item.year}>
-                <span>{item.year}</span>
-                <span>{item.users}</span>
-                <span>{item.arr}</span>
-                <span>{item.value}</span>
+                <span data-label="Year">{item.year}</span>
+                <span data-label="Users">{item.users}</span>
+                <span data-label="ARR">{item.arr}</span>
+                <span data-label="Valuation">{item.value}</span>
               </div>
             ))}
           </div>
@@ -516,9 +548,9 @@ function App() {
             </div>
             {competitiveRows.map((row) => (
               <div className="competitive-table__row" role="row" key={row.category}>
-                <span>{row.category}</span>
-                <span>{row.competitor}</span>
-                <span>{row.limitation}</span>
+                <span data-label="Category">{row.category}</span>
+                <span data-label="Competitors">{row.competitor}</span>
+                <span data-label="Limitation">{row.limitation}</span>
               </div>
             ))}
           </div>
