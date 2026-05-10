@@ -1,7 +1,9 @@
 import { useState } from 'react'
 
 const navLinks = [
+  { href: '#bookings', label: 'Book Services' },
   { href: '#features', label: 'Features' },
+  { href: '#portfolio', label: 'Portfolio' },
   { href: '#how-it-works', label: 'How It Works' },
   { href: '#why-oma', label: 'Why OMA' },
   { href: '#closing', label: 'Get Started' },
@@ -103,6 +105,47 @@ const whyOmaPoints = [
   'Everything in one platform',
 ]
 
+const serviceBookings = [
+  {
+    title: 'Weddings',
+    text: 'Book full planning, coordination, decor, catering, and guest-flow support for memorable wedding celebrations.',
+  },
+  {
+    title: 'Baby Showers',
+    text: 'Create beautiful intimate moments with styling, food service, setup, and stress-free coordination.',
+  },
+  {
+    title: 'Bridal Showers',
+    text: 'Plan elegant pre-wedding experiences with trusted vendors, curated themes, and smooth execution.',
+  },
+  {
+    title: 'Decoration',
+    text: 'Find decorators for event styling, floral direction, stage setup, table design, and venue transformation.',
+  },
+  {
+    title: 'Interior Decor',
+    text: 'Book interior styling support for event-ready spaces, private celebrations, and premium visual presentation.',
+  },
+]
+
+const portfolioLayers = [
+  {
+    label: 'Hook Layer',
+    title: 'Import Social Proof',
+    text: 'Let vendors connect Instagram or TikTok and pull in visual proof so onboarding feels fast and familiar.',
+  },
+  {
+    label: 'Core Layer',
+    title: 'Build Native OMA Portfolios',
+    text: 'Structured categories, pricing, availability, verified reviews, and case studies help clients choose confidently.',
+  },
+  {
+    label: 'Power Layer',
+    title: 'Enable Trusted Transactions',
+    text: 'Booking, OmaPay escrow, milestone releases, and digital agreements turn discovery into real business.',
+  },
+]
+
 const taglines = [
   'Where Events Come Together.',
   'Plan Smart. Celebrate Better.',
@@ -154,11 +197,14 @@ function App() {
         <section className="hero">
           <div className="hero__content">
             <p className="eyebrow">Africa&apos;s Event Operating System</p>
-            <h1>Plan Perfect Events. Without the Chaos.</h1>
+            <h1>
+              Plan Perfect Events.
+              <span> Without the Chaos.</span>
+            </h1>
             <p className="hero__lead">
               OMA EVENTS is Africa&apos;s first all-in-one platform to plan,
               manage, and execute events with trusted vendors, smart budgeting,
-              and secure payments.
+              secure payments, and premium service booking for every celebration.
             </p>
 
             <div className="hero__actions">
@@ -185,11 +231,12 @@ function App() {
           </div>
 
           <div className="hero__visual">
-            <div className="logo-card">
-              <img src="/oma-logo.jpeg" alt="OMA Events logo" />
+            <div className="showcase-card">
+              <img src="/oma-flyer.jpeg" alt="OMA Events flyer and service showcase" />
+              <div className="showcase-badge">Gold Standard Events</div>
             </div>
             <div className="hero__quote">
-              <p>Africa&apos;s first all-in-one platform for modern event execution.</p>
+              <p>Social media helps vendors get discovered. OMA helps them get chosen, trusted, and paid.</p>
             </div>
           </div>
         </section>
@@ -223,6 +270,31 @@ function App() {
           </div>
         </section>
 
+        <section className="section" id="bookings">
+          <div className="section__intro">
+            <p className="eyebrow">Book With OMA</p>
+            <h2>Clients can book the moments that matter most.</h2>
+            <p>
+              From weddings to interior decor, OMA EVENTS should be where
+              clients discover services, compare trusted options, and book with
+              confidence.
+            </p>
+          </div>
+
+          <div className="booking-grid">
+            {serviceBookings.map((service) => (
+              <article className="booking-card" key={service.title}>
+                <span className="booking-card__tag">Book Now</span>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+                <a className="booking-card__action" href="#closing">
+                  Book {service.title}
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="section" id="features">
           <div className="section__intro">
             <p className="eyebrow">Core Features</p>
@@ -242,6 +314,36 @@ function App() {
               </article>
             ))}
           </div>
+        </section>
+
+        <section className="section" id="portfolio">
+          <div className="section__intro">
+            <p className="eyebrow">Vendor Portfolio Strategy</p>
+            <h2>Use social proof to attract vendors, then let OMA close the trust gap.</h2>
+            <p>
+              Instagram and TikTok are powerful marketing layers, but OMA
+              EVENTS should be the operating system where vendors are evaluated,
+              booked, and paid.
+            </p>
+          </div>
+
+          <div className="portfolio-grid">
+            {portfolioLayers.map((layer) => (
+              <article className="portfolio-card" key={layer.title}>
+                <span className="portfolio-card__label">{layer.label}</span>
+                <h3>{layer.title}</h3>
+                <p>{layer.text}</p>
+              </article>
+            ))}
+          </div>
+
+          <article className="portfolio-callout">
+            <p>
+              Instagram and TikTok are the showcase. OMA EVENTS is the execution
+              layer. That is how the platform becomes infrastructure, not just a
+              marketplace.
+            </p>
+          </article>
         </section>
 
         <section className="section section--split" id="solution">
@@ -362,15 +464,24 @@ function App() {
         <section className="section section--closing" id="closing">
           <article className="closing-card">
             <p className="eyebrow">Final CTA</p>
-            <h2>Start planning smarter today.</h2>
-            <p>Join the future of event planning in Africa.</p>
-            <div className="hero__actions hero__actions--center">
+            <h2>
+              Start planning
+              <span> smarter today.</span>
+            </h2>
+            <p className="closing-card__subtext">
+              Join the future of event planning in Africa with a platform built
+              for trust, beauty, and seamless execution.
+            </p>
+            <div className="hero__actions hero__actions--center closing-card__actions">
               <a className="button button--dark" href="#home">
                 Get Started Free
               </a>
               <a className="button button--light" href="#features">
                 Browse Vendors
               </a>
+            </div>
+            <div className="closing-card__note">
+              Structured planning. Verified vendors. Secure payments.
             </div>
           </article>
         </section>
