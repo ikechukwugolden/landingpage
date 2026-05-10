@@ -122,6 +122,10 @@ a {
   color: var(--ink);
 }
 
+.topbar__nav a {
+  white-space: nowrap;
+}
+
 .topbar__toggle {
   display: none;
   align-items: center;
@@ -252,6 +256,11 @@ a {
   margin: 30px 0 34px;
 }
 
+.hero__actions--center {
+  justify-content: center;
+  margin-bottom: 0;
+}
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -281,7 +290,7 @@ a {
 
 .hero__meta {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -289,6 +298,15 @@ a {
   padding-top: 16px;
   border-top: 1px solid var(--line);
   min-width: 0;
+}
+
+.hero__trust {
+  margin: 0 0 20px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .meta-label {
@@ -345,7 +363,7 @@ a {
 
 .stats-band {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   margin: 0 0 18px;
 }
@@ -570,6 +588,10 @@ a {
   margin-top: 18px;
 }
 
+.feature-strip--trio {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .partner-grid,
 .stack-grid,
 .vision-grid,
@@ -607,6 +629,28 @@ a {
   margin: 0;
   color: var(--muted);
   line-height: 1.7;
+}
+
+.feature-card {
+  position: relative;
+  padding-top: 72px;
+}
+
+.feature-card__index {
+  position: absolute;
+  top: 24px;
+  left: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  color: var(--ink);
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
 }
 
 .partner-card {
@@ -697,6 +741,14 @@ a {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
+.roadmap-grid--four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.step-card span {
+  color: var(--gold);
+}
+
 .philosophy-grid {
   display: grid;
   gap: 18px;
@@ -771,6 +823,73 @@ a {
   font-weight: 800;
 }
 
+.panel--solution h3 {
+  max-width: 12ch;
+}
+
+.architecture-strip--four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.check-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.check-card {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 24px 26px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: var(--shadow);
+}
+
+.check-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #111111;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.check-card p {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.7;
+  font-weight: 600;
+}
+
+.section--tags {
+  padding-top: 10px;
+}
+
+.tagline-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tagline-strip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
 .panel--statement {
   text-align: center;
 }
@@ -818,11 +937,15 @@ a {
   .architecture-strip,
   .cards-grid--wide,
   .feature-strip,
+  .feature-strip--trio,
   .partner-grid,
+  .check-grid,
   .stack-grid,
   .vision-grid,
   .counts-grid,
-  .roadmap-grid--five {
+  .roadmap-grid--five,
+  .roadmap-grid--four,
+  .architecture-strip--four {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -845,12 +968,43 @@ a {
   }
 
   .topbar {
+    position: static;
+    flex-direction: column;
+    align-items: stretch;
     border-radius: 30px;
+    padding: 18px;
+  }
+
+  .topbar__bar {
+    width: 100%;
+  }
+
+  .topbar__toggle {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
   }
 
   .topbar__nav {
-    gap: 12px 16px;
-    font-size: 0.9rem;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    padding-top: 14px;
+    margin-top: 14px;
+    border-top: 1px solid var(--line);
+    font-size: 0.95rem;
+  }
+
+  .topbar__nav--open {
+    display: flex;
+  }
+
+  .topbar__nav a {
+    width: 100%;
+    padding: 10px 0;
+    font-weight: 600;
   }
 
   .hero__content {
@@ -881,47 +1035,12 @@ a {
   }
 
   .topbar {
-    position: static;
-    flex-direction: column;
-    align-items: stretch;
-    padding: 18px;
     border-radius: 28px;
-  }
-
-  .topbar__bar {
-    width: 100%;
   }
 
   .brand-mark__logo {
     width: 38px;
     height: 38px;
-  }
-
-  .topbar__toggle {
-    position: relative;
-    display: inline-flex;
-    flex-shrink: 0;
-  }
-
-  .topbar__nav {
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    width: 100%;
-    padding-top: 14px;
-    margin-top: 14px;
-    border-top: 1px solid var(--line);
-  }
-
-  .topbar__nav--open {
-    display: flex;
-  }
-
-  .topbar__nav a {
-    width: 100%;
-    padding: 10px 0;
-    font-weight: 600;
   }
 
   .hero__content,
@@ -958,6 +1077,11 @@ a {
     letter-spacing: 0.14em;
   }
 
+  .hero__trust {
+    font-size: 0.84rem;
+    line-height: 1.6;
+  }
+
   .hero,
   .section-grid,
   .summary-layout,
@@ -968,10 +1092,14 @@ a {
   .revenue-layout,
   .roadmap-grid,
   .roadmap-grid--five,
+  .roadmap-grid--four,
   .stats-band,
   .architecture-strip,
+  .architecture-strip--four,
   .feature-strip,
+  .feature-strip--trio,
   .partner-grid,
+  .check-grid,
   .stack-grid,
   .vision-grid,
   .counts-grid {
@@ -1096,9 +1224,21 @@ a {
     font-size: 0.98rem;
   }
 
+  .hero__meta {
+    gap: 10px;
+  }
+
+  .hero__meta div {
+    padding-top: 12px;
+  }
+
   .hero__quote p,
   .quote-card p {
     font-size: 1.35rem;
+  }
+
+  .feature-card__index {
+    left: 22px;
   }
 
   .button {
@@ -1118,5 +1258,15 @@ a {
   .projection-table,
   .competitive-table {
     border-radius: 24px;
+  }
+
+  .tagline-strip {
+    gap: 10px;
+  }
+
+  .tagline-strip span {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
   }
 }

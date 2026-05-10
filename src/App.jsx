@@ -1,206 +1,114 @@
 import { useState } from 'react'
 
 const navLinks = [
-  { href: '#summary', label: 'Summary' },
-  { href: '#solution', label: 'Solution' },
-  { href: '#market', label: 'Market' },
-  { href: '#roadmap', label: 'Roadmap' },
-  { href: '#closing', label: 'Positioning' },
+  { href: '#features', label: 'Features' },
+  { href: '#how-it-works', label: 'How It Works' },
+  { href: '#why-oma', label: 'Why OMA' },
+  { href: '#closing', label: 'Get Started' },
 ]
 
-const executiveSummaryPoints = [
-  'Smart planning tools',
-  'Verified vendor marketplace',
-  'Financial infrastructure with escrow and payments',
+const heroHighlights = [
+  'Trusted vendors',
+  'Smart budgeting',
+  'Secure payments',
+]
+
+const valuePoints = [
+  'No more scattered WhatsApp chats.',
+  'No more unreliable vendors.',
+  'No more budget surprises.',
+]
+
+const coreFeatures = [
+  {
+    icon: '01',
+    title: 'Smart Planning Dashboard',
+    text: 'Plan your entire event with timelines, tasks, and real-time collaboration.',
+  },
+  {
+    icon: '02',
+    title: 'Verified Vendor Marketplace',
+    text: 'Discover trusted vendors with real reviews, ratings, and portfolios.',
+  },
+  {
+    icon: '03',
+    title: 'Budget and Expense Control',
+    text: 'Track every cost, avoid overspending, and stay in control.',
+  },
+  {
+    icon: '04',
+    title: 'Oma AI Assistant',
+    text: 'Get intelligent recommendations for vendors, themes, and timelines.',
+  },
+  {
+    icon: '05',
+    title: 'Secure Payments with OmaPay',
+    text: 'Pay vendors safely with escrow protection and digital contracts.',
+  },
+  {
+    icon: '06',
+    title: 'Guest and RSVP Management',
+    text: 'Manage invitations, seating, and guest check-ins effortlessly.',
+  },
+]
+
+const problemPoints = [
+  'Too many vendors, no trust',
+  'Endless calls and messages',
+  'No clear budget control',
+  'Everything feels disorganized',
+]
+
+const proofPoints = [
+  'Thousands of vendors ready to work',
+  'Smart tools used by modern planners',
+  'Designed for African event culture',
+]
+
+const steps = [
+  {
+    step: '01',
+    title: 'Create Your Event',
+    text: 'Set your date, budget, and vision.',
+  },
+  {
+    step: '02',
+    title: 'Find Vendors',
+    text: 'Browse and book verified professionals.',
+  },
+  {
+    step: '03',
+    title: 'Manage Everything',
+    text: 'Track tasks, payments, and progress.',
+  },
+  {
+    step: '04',
+    title: 'Execute Seamlessly',
+    text: 'Enjoy your event without stress.',
+  },
+]
+
+const positioningPoints = [
+  'Planning software',
+  'Vendor marketplace',
+  'Payment infrastructure',
   'AI-powered automation',
-  'Data analytics and community ecosystem',
 ]
 
-const challengePoints = [
-  'Fragmented communication across WhatsApp, calls, and spreadsheets',
-  'Vendor unreliability and lack of trust',
-  'Budget mismanagement and overspending',
-  'No unified planning, payment, and coordination system',
-  'Difficulty discovering verified vendors and venues',
-  'Lack of real-time tracking and analytics',
-  'Offline contracts and informal transactions',
+const whyOmaPoints = [
+  'Verified vendors you can trust',
+  'Secure escrow payments',
+  'AI-powered planning assistance',
+  'Built for African realities',
+  'Everything in one platform',
 ]
 
-const solutionLayers = [
-  {
-    title: 'Smart Planning System',
-    text: 'Real-time dashboards, task timelines, collaboration spaces, and automated reminders bring structure to every event.',
-  },
-  {
-    title: 'Verified Marketplace',
-    text: 'Trusted vendors and venues with ratings, reviews, and performance tracking help clients book with confidence.',
-  },
-  {
-    title: 'OmaPay Infrastructure',
-    text: 'Escrow payments, smart contracts, and milestone-based releases create financial transparency and trust.',
-  },
-  {
-    title: 'Oma AI Intelligence',
-    text: 'AI-powered vendor recommendations, budget optimization, and predictive timelines improve planning quality.',
-  },
-  {
-    title: 'Event Execution Tools',
-    text: 'RSVP management, QR check-ins, seating workflows, and logistics planning support smooth event delivery.',
-  },
-  {
-    title: 'Data and Analytics',
-    text: 'Budget versus actual analysis, vendor performance metrics, and predictive insights improve future decisions.',
-  },
-  {
-    title: 'Community Ecosystem',
-    text: 'Vendor certification, learning hubs, and networking opportunities grow the ecosystem around the platform.',
-  },
-]
-
-const architecture = [
-  'SaaS Layer - Planning, dashboards, workflow',
-  'Marketplace Layer - Vendors, venues, planners',
-  'Fintech Layer - Payments, escrow, contracts',
-  'AI Layer - Recommendations, automation, analytics',
-  'Community Layer - Education, certification, rewards',
-]
-
-const revenueStreams = [
-  'Freemium to premium subscription at $10/month',
-  'Vendor listing and verification fees',
-  '2% to 5% commission per booking',
-  'Featured listings and promotions',
-  'Enterprise SaaS through OmaPro',
-  'Future token economy through OmaCoin',
-]
-
-const marketStats = [
-  { label: 'Vendors', value: '100,000+' },
-  { label: 'Planners', value: '10,000+' },
-  { label: 'Events in Nigeria', value: '60,000+' },
-]
-
-const projections = [
-  { year: '2025', users: '2,000', arr: '$240K', value: '$2.4M' },
-  { year: '2026', users: '20,000', arr: '$2.4M', value: '$24M' },
-  { year: '2027', users: '100,000', arr: '$12M', value: '$120M' },
-  { year: '2028', users: '500,000', arr: '$60M', value: '$600M' },
-  { year: '2029-2030', users: '1M+', arr: '$120M', value: '$1.2B+' },
-]
-
-const winPoints = [
-  {
-    title: 'First-Mover Advantage',
-    text: 'First Event-OS in Africa combining SaaS, marketplace, fintech, and AI.',
-  },
-  {
-    title: 'Localized Intelligence',
-    text: 'Built specifically for African event culture and operating realities.',
-  },
-  {
-    title: 'Trust Infrastructure',
-    text: 'Verified vendors and escrow payments form a stronger transaction layer.',
-  },
-  {
-    title: 'Data and AI Moat',
-    text: 'Proprietary data and AI personalization create defensible long-term value.',
-  },
-  {
-    title: 'Network Effects',
-    text: 'More vendors, more clients, and more transactions reinforce platform growth.',
-  },
-  {
-    title: 'Offline-Online Integration',
-    text: 'OMA bridges WhatsApp, mobile, and web workflows in one ecosystem.',
-  },
-  {
-    title: 'Community Lock-In',
-    text: 'Certification, rewards, and ecosystem growth keep the network engaged.',
-  },
-]
-
-const techStack = [
-  'Frontend: React Native, Next.js',
-  'Backend: Node.js, Express',
-  'Database: MongoDB, Firebase',
-  'Payments: Paystack, Flutterwave, OmaPay',
-  'AI: OpenAI plus custom ML models',
-  'AR/VR: Unity, WebXR',
-  'Analytics: Data dashboards',
-]
-
-const competitiveRows = [
-  {
-    category: 'Event Tools',
-    competitor: 'Eventbrite',
-    limitation: 'Ticketing only',
-  },
-  {
-    category: 'Vendor Platforms',
-    competitor: 'WeddingWire',
-    limitation: 'Listings only',
-  },
-  {
-    category: 'Project Tools',
-    competitor: 'Notion, Monday',
-    limitation: 'Not event-specific',
-  },
-]
-
-const roadmap = [
-  {
-    phase: 'Phase 1',
-    title: 'Foundation',
-    text: 'Launch the MVP in Lagos and onboard 200+ vendors.',
-  },
-  {
-    phase: 'Phase 2',
-    title: 'Growth',
-    text: 'Expand across Nigeria and launch AI plus payment infrastructure.',
-  },
-  {
-    phase: 'Phase 3',
-    title: 'Intelligence',
-    text: 'Add analytics, learning hubs, and deeper platform insight loops.',
-  },
-  {
-    phase: 'Phase 4',
-    title: 'Expansion',
-    text: 'Enter new African markets and establish regional market presence.',
-  },
-  {
-    phase: 'Phase 5',
-    title: 'Domination',
-    text: 'Reach 1M+ users, launch the token ecosystem, and prepare for IPO readiness.',
-  },
-]
-
-const partnerships = [
-  {
-    title: 'Payment Providers',
-    text: 'Partners like Paystack and Flutterwave strengthen the platform payment layer.',
-  },
-  {
-    title: 'Event Venues',
-    text: 'Hotels, halls, and destination venues expand trusted booking access.',
-  },
-  {
-    title: 'Logistics Partners',
-    text: 'Service providers support smooth execution, movement, and fulfillment.',
-  },
-  {
-    title: 'Educational Institutions',
-    text: 'Training and certification partnerships help grow the event ecosystem.',
-  },
-]
-
-const coreValues = ['Trust', 'Innovation', 'Culture', 'Community', 'Excellence']
-
-const futureVision = [
-  'Event financing and insurance platform',
-  'AI-driven event automation engine',
-  'AR and VR event experiences',
-  'Global celebration infrastructure',
+const taglines = [
+  'Where Events Come Together.',
+  'Plan Smart. Celebrate Better.',
+  "Africa's Event Operating System.",
+  'From Idea to Celebration - Seamlessly.',
+  'No Chaos. Just Perfect Events.',
 ]
 
 function App() {
@@ -245,41 +153,34 @@ function App() {
       <main id="home">
         <section className="hero">
           <div className="hero__content">
-            <p className="eyebrow">OMA Events Whitepaper</p>
-            <h1>Reinventing event planning across Africa.</h1>
+            <p className="eyebrow">Africa&apos;s Event Operating System</p>
+            <h1>Plan Perfect Events. Without the Chaos.</h1>
             <p className="hero__lead">
-              OMA Events is a multi-layered Event Operating System designed to
-              digitize the celebration economy with planning tools, trusted
-              vendor discovery, financial infrastructure, AI automation, and
-              ecosystem intelligence.
+              OMA EVENTS is Africa&apos;s first all-in-one platform to plan,
+              manage, and execute events with trusted vendors, smart budgeting,
+              and secure payments.
             </p>
 
             <div className="hero__actions">
-              <a className="button button--dark" href="#market">
-                View Market Opportunity
+              <a className="button button--dark" href="#closing">
+                Start Planning Your Event
               </a>
-              <a className="button button--light" href="#summary">
-                Read the Vision
+              <a className="button button--light" href="#features">
+                Explore Vendors
               </a>
             </div>
 
+            <p className="hero__trust">
+              Trusted by planners, vendors, and creators across Africa
+            </p>
+
             <div className="hero__meta">
-              <div>
-                <span className="meta-label">Founder</span>
-                <strong>Omalichawa Egwim</strong>
-              </div>
-              <div>
-                <span className="meta-label">Editor</span>
-                <strong>Victor Okere</strong>
-              </div>
-              <div>
-                <span className="meta-label">Business Model</span>
-                <strong>SaaS + Marketplace + Fintech + AI</strong>
-              </div>
-              <div>
-                <span className="meta-label">Category</span>
-                <strong>Event Operating System</strong>
-              </div>
+              {heroHighlights.map((item) => (
+                <div key={item}>
+                  <span className="meta-label">Built For</span>
+                  <strong>{item}</strong>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -288,66 +189,32 @@ function App() {
               <img src="/oma-logo.jpeg" alt="OMA Events logo" />
             </div>
             <div className="hero__quote">
-              <p>
-                &ldquo;Celebration is not just an event. It&apos;s a story, a
-                memory, and a connection.&rdquo;
-              </p>
+              <p>Africa&apos;s first all-in-one platform for modern event execution.</p>
             </div>
           </div>
         </section>
 
         <section className="stats-band">
-          <article>
-            <strong>$20B+</strong>
-            <span>African event industry opportunity</span>
-          </article>
-          <article>
-            <strong>90%+</strong>
-            <span>Of the ecosystem still operating manually</span>
-          </article>
-          <article>
-            <strong>1M+</strong>
-            <span>Projected users by 2029-2030</span>
-          </article>
-          <article>
-            <strong>$1.2B+</strong>
-            <span>Projected valuation at scale</span>
-          </article>
+          {proofPoints.map((point) => (
+            <article key={point}>
+              <strong>OMA</strong>
+              <span>{point}</span>
+            </article>
+          ))}
         </section>
 
         <section className="section" id="summary">
           <div className="section__intro">
-            <p className="eyebrow">Executive Summary</p>
-            <h2>Infrastructure for the future of celebrations.</h2>
+            <p className="eyebrow">Value Proposition</p>
+            <h2>Everything you need to plan an event in one place.</h2>
             <p>
-              The platform replaces fragmented manual workflows with a
-              centralized, intelligent, and trust-based system built for event
-              planning across Africa.
+              OMA EVENTS gives you a centralized system to plan, collaborate,
+              pay, and execute your event from idea to celebration.
             </p>
           </div>
 
-          <div className="summary-layout">
-            <article className="panel panel--dark">
-              <p className="eyebrow">Mission</p>
-              <h3>To simplify, digitize, and elevate event planning.</h3>
-              <p>
-                OMA enables seamless collaboration, financial transparency, and
-                exceptional execution through one unified platform.
-              </p>
-            </article>
-
-            <article className="panel">
-              <p className="eyebrow">Vision</p>
-              <h3>Africa&apos;s most trusted and intelligent event ecosystem.</h3>
-              <p>
-                OMA connects people, culture, and celebration through
-                technology designed specifically for local realities.
-              </p>
-            </article>
-          </div>
-
-          <div className="feature-strip">
-            {executiveSummaryPoints.map((item) => (
+          <div className="feature-strip feature-strip--trio">
+            {valuePoints.map((item) => (
               <article className="feature-tile" key={item}>
                 <span />
                 <p>{item}</p>
@@ -356,292 +223,164 @@ function App() {
           </div>
         </section>
 
-        <section className="section section--split">
+        <section className="section" id="features">
           <div className="section__intro">
-            <p className="eyebrow">Industry Problem</p>
-            <h2>A multi-billion-dollar market is still running inefficiently.</h2>
+            <p className="eyebrow">Core Features</p>
+            <h2>Benefits first, stress out.</h2>
             <p>
-              The African event ecosystem remains fragmented, informal, and hard
-              to trust at scale, leaving massive value on the table.
-            </p>
-          </div>
-
-          <div className="bullet-panel">
-            {challengePoints.map((point) => (
-              <div className="bullet-row" key={point}>
-                <span className="bullet-row__dot" />
-                <p>{point}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="section" id="solution">
-          <div className="section__intro">
-            <p className="eyebrow">OMA as the Solution</p>
-            <h2>A full-stack digital ecosystem for planning, trust, execution, and growth.</h2>
-            <p>
-              OMA Events introduces seven connected solution layers that turn
-              event planning into a structured, data-rich, and dependable
-              experience.
+              From planning to payment, every part of the event workflow lives
+              inside one smart system.
             </p>
           </div>
 
           <div className="cards-grid cards-grid--wide">
-            {solutionLayers.map((item) => (
-              <article className="info-card" key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
+            {coreFeatures.map((feature) => (
+              <article className="info-card feature-card" key={feature.title}>
+                <span className="feature-card__index">{feature.icon}</span>
+                <h3>{feature.title}</h3>
+                <p>{feature.text}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="section">
-          <div className="section__intro">
-            <p className="eyebrow">Product Architecture</p>
-            <h2>OMA operates across five integrated layers.</h2>
-            <p>
-              This Event-OS model positions OMA as industry infrastructure, not
-              just another software tool.
-            </p>
-          </div>
+        <section className="section section--split" id="solution">
+          <div>
+            <div className="section__intro">
+              <p className="eyebrow">Problem</p>
+              <h2>Event planning is broken. We fixed it.</h2>
+            </div>
 
-          <div className="architecture-strip architecture-strip--stacked">
-            {architecture.map((layer) => (
-              <div className="architecture-chip" key={layer}>
-                {layer}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="section" id="market">
-          <div className="section__intro">
-            <p className="eyebrow">Market Opportunity</p>
-            <h2>Huge demand, low infrastructure, clear room to win.</h2>
-          </div>
-
-          <div className="market-grid">
-            <article className="market-card">
-              <span>TAM</span>
-              <strong>$20B+ annually</strong>
-              <p>Largely untapped digital infrastructure across the African event market.</p>
-            </article>
-            <article className="market-card">
-              <span>SAM</span>
-              <strong>Nigeria plus key African markets</strong>
-              <p>Initial focus across Nigeria, Ghana, Kenya, and South Africa.</p>
-            </article>
-            <article className="market-card">
-              <span>SOM</span>
-              <strong>1% initial penetration target</strong>
-              <p>Equivalent to about $200M in annual revenue potential at scale.</p>
-            </article>
-          </div>
-
-          <div className="counts-grid">
-            {marketStats.map((stat) => (
-              <article className="count-card" key={stat.label}>
-                <strong>{stat.value}</strong>
-                <span>{stat.label}</span>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="section__intro">
-            <p className="eyebrow">Business Model</p>
-            <h2>Revenue is diversified from day one.</h2>
-          </div>
-
-          <div className="revenue-layout">
             <div className="bullet-panel">
-              {revenueStreams.map((stream) => (
-                <div className="bullet-row" key={stream}>
+              {problemPoints.map((point) => (
+                <div className="bullet-row" key={point}>
                   <span className="bullet-row__dot" />
-                  <p>{stream}</p>
+                  <p>{point}</p>
                 </div>
               ))}
             </div>
-
-            <article className="panel panel--accent">
-              <p className="eyebrow">Positioning</p>
-              <h3>OMA Events equals Africa&apos;s all-in-one event ecosystem.</h3>
-              <p>
-                The platform brings planning, payments, vendor discovery, data,
-                and intelligence together inside one coordinated operating
-                system.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <section className="section section--projection">
-          <div className="section__intro">
-            <p className="eyebrow">Growth and Financial Projection</p>
-            <h2>A five-year path with clear unicorn potential.</h2>
-            <p>OMA Events projects strong user growth, ARR expansion, and rising market value from 2025 through 2030.</p>
           </div>
 
-          <div className="projection-table" role="table" aria-label="Growth projections">
-            <div className="projection-table__head" role="row">
-              <span>Year</span>
-              <span>Users</span>
-              <span>ARR</span>
-              <span>Valuation</span>
-            </div>
-            {projections.map((item) => (
-              <div className="projection-table__row" role="row" key={item.year}>
-                <span data-label="Year">{item.year}</span>
-                <span data-label="Users">{item.users}</span>
-                <span data-label="ARR">{item.arr}</span>
-                <span data-label="Valuation">{item.value}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="section__intro">
-            <p className="eyebrow">Why OMA Wins</p>
-            <h2>Built for local trust, local culture, and platform-scale growth.</h2>
-          </div>
-
-          <div className="cards-grid">
-            {winPoints.map((point) => (
-              <article className="info-card" key={point.title}>
-                <h3>{point.title}</h3>
-                <p>{point.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="section__intro">
-            <p className="eyebrow">Technology Stack</p>
-            <h2>Modern infrastructure designed for web, mobile, AI, and growth.</h2>
-          </div>
-
-          <div className="stack-grid">
-            {techStack.map((item) => (
-              <article className="stack-card" key={item}>
-                <p>{item}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="section__intro">
-            <p className="eyebrow">Competitive Positioning</p>
-            <h2>Existing tools solve pieces. OMA connects the whole workflow.</h2>
-          </div>
-
-          <div className="competitive-table" role="table" aria-label="Competitive positioning">
-            <div className="competitive-table__head" role="row">
-              <span>Category</span>
-              <span>Competitors</span>
-              <span>Limitation</span>
-            </div>
-            {competitiveRows.map((row) => (
-              <div className="competitive-table__row" role="row" key={row.category}>
-                <span data-label="Category">{row.category}</span>
-                <span data-label="Competitors">{row.competitor}</span>
-                <span data-label="Limitation">{row.limitation}</span>
-              </div>
-            ))}
-          </div>
-
-          <article className="panel panel--dark panel--statement">
-            <h3>OMA Events = All-in-One Ecosystem</h3>
+          <article className="panel panel--dark panel--solution">
+            <p className="eyebrow">Solution</p>
+            <h3>OMA EVENTS brings structure, transparency, and control into your event.</h3>
+            <p>
+              Everything you need to plan, manage vendors, control budgets, and
+              execute with confidence now lives in one platform.
+            </p>
           </article>
         </section>
 
-        <section className="section" id="roadmap">
+        <section className="section">
           <div className="section__intro">
-            <p className="eyebrow">Roadmap</p>
-            <h2>From Lagos MVP to continental category leadership.</h2>
+            <p className="eyebrow">Social Proof</p>
+            <h2>Built for Africa. Designed for excellence.</h2>
+            <p>
+              From weddings to corporate events, OMA EVENTS is transforming how
+              celebrations are planned across the continent.
+            </p>
           </div>
 
-          <div className="roadmap-grid roadmap-grid--five">
-            {roadmap.map((item) => (
-              <article className="roadmap-card" key={item.phase}>
-                <span>{item.phase}</span>
+          <div className="cards-grid">
+            {proofPoints.map((point) => (
+              <article className="info-card" key={point}>
+                <h3>{point}</h3>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section" id="how-it-works">
+          <div className="section__intro">
+            <p className="eyebrow">How It Works</p>
+            <h2>Plan your event in 4 simple steps.</h2>
+          </div>
+
+          <div className="roadmap-grid roadmap-grid--four">
+            {steps.map((item) => (
+              <article className="roadmap-card step-card" key={item.step}>
+                <span>{item.step}</span>
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section__intro">
+            <p className="eyebrow">Product Positioning</p>
+            <h2>Not just an app. An Event Operating System.</h2>
+            <p>
+              OMA EVENTS combines planning software, vendor discovery, payment
+              infrastructure, and AI-powered automation into one powerful
+              ecosystem for modern event execution.
+            </p>
+          </div>
+
+          <div className="architecture-strip architecture-strip--four">
+            {positioningPoints.map((item) => (
+              <div className="architecture-chip" key={item}>
+                {item}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section" id="why-oma">
+          <div className="section__intro">
+            <p className="eyebrow">Why OMA Events Wins</p>
+            <h2>Why OMA EVENTS is different.</h2>
+          </div>
+
+          <div className="check-grid">
+            {whyOmaPoints.map((point) => (
+              <article className="check-card" key={point}>
+                <span className="check-card__icon">+</span>
+                <p>{point}</p>
               </article>
             ))}
           </div>
         </section>
 
         <section className="section section--split">
-          <div>
-            <div className="section__intro">
-              <p className="eyebrow">Partnership Strategy</p>
-              <h2>Growth depends on strong ecosystem relationships.</h2>
-            </div>
+          <article className="quote-card">
+            <p>Every event tells a story. Make yours unforgettable.</p>
+          </article>
 
-            <div className="partner-grid">
-              {partnerships.map((item) => (
-                <article className="partner-card" key={item.title}>
-                  <span className="partner-card__dot" />
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-
-          <div className="philosophy-grid">
-            <article className="quote-card">
-              <p>
-                Celebration is not just an event. It&apos;s a story, a memory,
-                and a connection.
-              </p>
-            </article>
-
-            <article className="panel">
-              <p className="eyebrow">Core Values</p>
-              <div className="value-list">
-                {coreValues.map((value) => (
-                  <span key={value}>{value}</span>
-                ))}
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="section__intro">
-            <p className="eyebrow">Long-Term Vision</p>
-            <h2>From event planning platform to global celebration infrastructure.</h2>
-          </div>
-
-          <div className="vision-grid">
-            {futureVision.map((item) => (
-              <article className="info-card" key={item}>
-                <h3>{item}</h3>
-              </article>
-            ))}
-          </div>
+          <article className="panel">
+            <p className="eyebrow">Emotional Close</p>
+            <h3>Bring your vision to life without stress, confusion, or compromise.</h3>
+            <p>
+              OMA EVENTS gives you the tools, the structure, and the confidence
+              to create memorable celebrations with clarity from start to
+              finish.
+            </p>
+          </article>
         </section>
 
         <section className="section section--closing" id="closing">
           <article className="closing-card">
-            <p className="eyebrow">Closing Statement</p>
-            <h2>OMA Events is building the digital backbone of celebrations in Africa.</h2>
-            <p>
-              It transforms chaos into structure, risk into trust, and
-              fragmentation into ecosystem. This is not just event planning.
-              This is event infrastructure for a continent.
-            </p>
-            <a className="button button--dark" href="#roadmap">
-              Explore the Roadmap
-            </a>
+            <p className="eyebrow">Final CTA</p>
+            <h2>Start planning smarter today.</h2>
+            <p>Join the future of event planning in Africa.</p>
+            <div className="hero__actions hero__actions--center">
+              <a className="button button--dark" href="#home">
+                Get Started Free
+              </a>
+              <a className="button button--light" href="#features">
+                Browse Vendors
+              </a>
+            </div>
           </article>
+        </section>
+
+        <section className="section section--tags">
+          <div className="tagline-strip">
+            {taglines.map((tagline) => (
+              <span key={tagline}>{tagline}</span>
+            ))}
+          </div>
         </section>
       </main>
     </div>
