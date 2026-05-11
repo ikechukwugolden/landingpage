@@ -7,6 +7,7 @@ import {
   Star,
   BarChart3,
   Users,
+  Calendar,
   CreditCard,
   Bot,
   LayoutDashboard,
@@ -16,9 +17,6 @@ import {
   Share2,
   AtSign,
   Mail,
-  Sparkles,
-  Crown,
-  Diamond,
 } from "lucide-react";
 
 // --- Data Constants ---
@@ -160,50 +158,6 @@ const taglines = [
 
 // --- Components ---
 
-function ScrollProgress() {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      setProgress(scrollPercent);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  return (
-    <div
-      className="scroll-progress"
-      style={{ width: `${progress}%` }}
-    />
-  );
-}
-
-function FloatingParticles() {
-  return (
-    <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 1, overflow: "hidden" }}>
-      {[...Array(6)].map((_, i) => (
-        <div
-          key={i}
-          className="particle"
-          style={{
-            width: `${4 + i * 2}px`,
-            height: `${4 + i * 2}px`,
-            top: `${15 + i * 15}%`,
-            left: `${10 + i * 15}%`,
-            opacity: 0.3,
-            animation: `float ${6 + i}s ease-in-out infinite`,
-            animationDelay: `${i * 0.8}s`,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -218,23 +172,16 @@ function Navbar() {
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="container navbar-inner">
         <a href="#home" className="brand">
-          <div
+          <img
+            src="/oma-logo.jpeg"
+            alt="OMA Events"
+            className="brand-logo"
             style={{
               width: "2.5rem",
               height: "2.5rem",
               borderRadius: "0.75rem",
-              background: "linear-gradient(135deg, #fbbf24, #d97706)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#000000",
-              fontWeight: "bold",
-              fontSize: "1.25rem",
-              boxShadow: "0 4px 20px rgba(251, 191, 36, 0.3)",
             }}
-          >
-            <Crown size={20} />
-          </div>
+          />
           <span className="brand-name">OMA Events</span>
         </a>
 
@@ -244,10 +191,7 @@ function Navbar() {
               {link.label}
             </a>
           ))}
-          <button className="nav-cta">
-            <Sparkles size={14} style={{ marginRight: "6px" }} />
-            Get Started
-          </button>
+          <button className="nav-cta">Get Started</button>
         </div>
 
         <button className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
@@ -292,8 +236,6 @@ function Hero() {
               Plan Perfect Events. <br />
               <span className="hero-gradient-text">Without the Chaos.</span>
             </h1>
-
-            <div className="gold-ornament-left" />
 
             <p className="hero-lead">
               OMA EVENTS is Africa's first all-in-one platform to plan, manage,
@@ -359,9 +301,7 @@ function StatsBand() {
       <div className="container stats-grid">
         {proofPoints.map((point, i) => (
           <div key={i} className="stat-card">
-            <div className="stat-badge">
-              {i === 0 ? <Diamond size={16} /> : i === 1 ? <Sparkles size={16} /> : <Crown size={16} />}
-            </div>
+            <div className="stat-badge">OMA</div>
             <span className="stat-text">{point}</span>
           </div>
         ))}
@@ -379,7 +319,6 @@ function ValueProp() {
           <h2 className="section-title">
             Everything you need to plan an event in one place.
           </h2>
-          <div className="gold-ornament" />
           <p className="section-desc">
             OMA EVENTS gives you a centralized system to plan, collaborate, pay,
             and execute your event from idea to celebration.
@@ -389,8 +328,6 @@ function ValueProp() {
         <div className="value-grid">
           {valuePoints.map((item, i) => (
             <div key={i} className="value-card">
-              <div className="gold-corner gold-corner-tl" />
-              <div className="gold-corner gold-corner-br" />
               <div className="value-icon-box">
                 <CheckCircle2 className="value-icon" />
               </div>
@@ -405,14 +342,13 @@ function ValueProp() {
 
 function Bookings() {
   return (
-    <section className="section section-alt" id="bookings">
+    <section className="section" id="bookings">
       <div className="container">
         <div className="section-intro">
           <p className="section-eyebrow">Book With OMA</p>
           <h2 className="section-title">
             Clients can book the moments that matter most.
           </h2>
-          <div className="gold-ornament" style={{ background: "linear-gradient(90deg, transparent, rgba(251,191,36,0.5), transparent)" }} />
           <p className="section-desc">
             From weddings to interior decor, OMA EVENTS should be where clients
             discover services, compare trusted options, and book with
@@ -444,7 +380,6 @@ function Features() {
         <div className="section-intro">
           <p className="section-eyebrow">Core Features</p>
           <h2 className="section-title">Benefits first, stress out.</h2>
-          <div className="gold-ornament" />
           <p className="section-desc">
             From planning to payment, every part of the event workflow lives
             inside one smart system.
@@ -476,7 +411,6 @@ function ProblemSolution() {
               <h2 className="section-title">
                 Event planning is broken. We fixed it.
               </h2>
-              <div className="gold-ornament-left" />
             </div>
 
             <div className="problem-list">
@@ -513,7 +447,6 @@ function HowItWorks() {
         <div className="section-intro">
           <p className="section-eyebrow">How It Works</p>
           <h2 className="section-title">Plan your event in 4 simple steps.</h2>
-          <div className="gold-ornament" />
         </div>
 
         <div className="steps-grid">
@@ -535,14 +468,13 @@ function HowItWorks() {
 
 function Positioning() {
   return (
-    <section className="section section-alt">
+    <section className="section">
       <div className="container">
         <div className="section-intro">
           <p className="section-eyebrow">Product Positioning</p>
           <h2 className="section-title">
             Not just an app. An Event Operating System.
           </h2>
-          <div className="gold-ornament" style={{ background: "linear-gradient(90deg, transparent, rgba(251,191,36,0.5), transparent)" }} />
           <p className="section-desc">
             OMA EVENTS combines planning software, vendor discovery, payment
             infrastructure, and AI-powered automation into one powerful
@@ -569,7 +501,6 @@ function WhyOma() {
         <div className="section-intro">
           <p className="section-eyebrow">Why OMA Events Wins</p>
           <h2 className="section-title">Why OMA EVENTS is different.</h2>
-          <div className="gold-ornament" />
         </div>
 
         <div className="why-grid">
@@ -587,14 +518,14 @@ function WhyOma() {
 
 function EmotionalClose() {
   return (
-    <section className="section section-alt">
+    <section className="section">
       <div className="container">
         <div className="emotional-grid">
           <div className="quote-box">
             <h3 className="quote-title">
               "Every event tells a story. Make yours unforgettable."
             </h3>
-            <p className="quote-author">— OMA Events</p>
+            <p className="quote-author">OMA Events</p>
           </div>
 
           <div className="emotional-content">
@@ -630,7 +561,6 @@ function ClosingCTA() {
         </p>
         <div className="cta-actions">
           <a href="#home" className="btn-primary">
-            <Sparkles size={18} style={{ marginRight: "8px" }} />
             Get Started Free
           </a>
           <a href="#features" className="btn-secondary">
@@ -666,14 +596,12 @@ function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <div className="footer-logo">
-              <div className="footer-logo-icon">
-                <Crown size={16} />
-              </div>
+              <div className="footer-logo-icon">O</div>
               <span className="footer-logo-text">OMA Events</span>
             </div>
             <p className="footer-desc">
               Africa's first all-in-one platform to plan, manage, and execute
-              events with elegance and precision.
+              events.
             </p>
             <div className="social-links">
               <a href="#" className="social-link">
@@ -774,8 +702,6 @@ function Footer() {
 function App() {
   return (
     <div>
-      <ScrollProgress />
-      <FloatingParticles />
       <Navbar />
       <Hero />
       <StatsBand />

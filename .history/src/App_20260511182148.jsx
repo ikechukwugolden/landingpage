@@ -412,7 +412,7 @@ function Bookings() {
           <h2 className="section-title">
             Clients can book the moments that matter most.
           </h2>
-          <div className="gold-ornament" style={{ background: "linear-gradient(90deg, transparent, rgba(251,191,36,0.5), transparent)" }} />
+          <div className="gold-ornament" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)" }} />
           <p className="section-desc">
             From weddings to interior decor, OMA EVENTS should be where clients
             discover services, compare trusted options, and book with
@@ -542,7 +542,7 @@ function Positioning() {
           <h2 className="section-title">
             Not just an app. An Event Operating System.
           </h2>
-          <div className="gold-ornament" style={{ background: "linear-gradient(90deg, transparent, rgba(251,191,36,0.5), transparent)" }} />
+          <div className="gold-ornament" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)" }} />
           <p className="section-desc">
             OMA EVENTS combines planning software, vendor discovery, payment
             infrastructure, and AI-powered automation into one powerful
