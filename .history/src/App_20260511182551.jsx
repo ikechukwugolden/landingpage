@@ -227,7 +227,7 @@ function Navbar() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "#000000",
+              color: "#ffffff",
               fontWeight: "bold",
               fontSize: "1.25rem",
               boxShadow: "0 4px 20px rgba(251, 191, 36, 0.3)",
@@ -794,4 +794,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;p;

@@ -412,7 +412,7 @@ function Bookings() {
           <h2 className="section-title">
             Clients can book the moments that matter most.
           </h2>
-          <div className="gold-ornament" style={{ background: "linear-gradient(90deg, transparent, rgba(251,191,36,0.5), transparent)" }} />
+          <div className="gold-ornament" />
           <p className="section-desc">
             From weddings to interior decor, OMA EVENTS should be where clients
             discover services, compare trusted options, and book with
@@ -535,7 +535,7 @@ function HowItWorks() {
 
 function Positioning() {
   return (
-    <section className="section section-alt">
+    <section className="section section-dark">
       <div className="container">
         <div className="section-intro">
           <p className="section-eyebrow">Product Positioning</p>
