@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import {
-  Menu,
-  X,
-  ArrowRight,
-  CheckCircle2,
-  Star,
-  BarChart3,
-  Users,
+import React, { useState, useEffect } from 'react';
+import { 
+  Menu, 
+  X, 
+  ArrowRight, 
+  CheckCircle2, 
+  Star, 
+  BarChart3, 
+  Users, 
   Calendar,
   CreditCard,
   Bot,
@@ -16,144 +16,163 @@ import {
   MessageCircle,
   Share2,
   AtSign,
-  Mail,
-} from "lucide-react";
+  Mail
+} from 'lucide-react';
 
 // --- Data Constants ---
 
 const navLinks = [
-  { href: "#bookings", label: "Book Services" },
-  { href: "#features", label: "Features" },
-  { href: "#how-it-works", label: "How It Works" },
-  { href: "#why-oma", label: "Why OMA" },
-  { href: "#closing", label: "Get Started" },
+  { href: '#bookings', label: 'Book Services' },
+  { href: '#features', label: 'Features' },
+  { href: '#portfolio', label: 'Portfolio' },
+  { href: '#how-it-works', label: 'How It Works' },
+  { href: '#why-oma', label: 'Why OMA' },
+  { href: '#closing', label: 'Get Started' },
 ];
 
 const heroHighlights = [
-  "Trusted vendors",
-  "Smart budgeting",
-  "Secure payments",
+  'Trusted vendors',
+  'Smart budgeting',
+  'Secure payments',
 ];
 
 const valuePoints = [
-  "No more scattered WhatsApp chats.",
-  "No more unreliable vendors.",
-  "No more budget surprises.",
+  'No more scattered WhatsApp chats.',
+  'No more unreliable vendors.',
+  'No more budget surprises.',
 ];
 
 const coreFeatures = [
   {
     icon: <LayoutDashboard className="feature-icon" />,
-    title: "Smart Planning Dashboard",
-    text: "Plan your entire event with timelines, tasks, and real-time collaboration.",
+    title: 'Smart Planning Dashboard',
+    text: 'Plan your entire event with timelines, tasks, and real-time collaboration.',
   },
   {
     icon: <Search className="feature-icon" />,
-    title: "Verified Vendor Marketplace",
-    text: "Discover trusted vendors with real reviews, ratings, and portfolios.",
+    title: 'Verified Vendor Marketplace',
+    text: 'Discover trusted vendors with real reviews, ratings, and portfolios.',
   },
   {
     icon: <BarChart3 className="feature-icon" />,
-    title: "Budget and Expense Control",
-    text: "Track every cost, avoid overspending, and stay in control.",
+    title: 'Budget and Expense Control',
+    text: 'Track every cost, avoid overspending, and stay in control.',
   },
   {
     icon: <Bot className="feature-icon" />,
-    title: "Oma AI Assistant",
-    text: "Get intelligent recommendations for vendors, themes, and timelines.",
+    title: 'Oma AI Assistant',
+    text: 'Get intelligent recommendations for vendors, themes, and timelines.',
   },
   {
     icon: <CreditCard className="feature-icon" />,
-    title: "Secure Payments with OmaPay",
-    text: "Pay vendors safely with escrow protection and digital contracts.",
+    title: 'Secure Payments with OmaPay',
+    text: 'Pay vendors safely with escrow protection and digital contracts.',
   },
   {
     icon: <Users className="feature-icon" />,
-    title: "Guest and RSVP Management",
-    text: "Manage invitations, seating, and guest check-ins effortlessly.",
+    title: 'Guest and RSVP Management',
+    text: 'Manage invitations, seating, and guest check-ins effortlessly.',
   },
 ];
 
 const problemPoints = [
-  "Too many vendors, no trust",
-  "Endless calls and messages",
-  "No clear budget control",
-  "Everything feels disorganized",
+  'Too many vendors, no trust',
+  'Endless calls and messages',
+  'No clear budget control',
+  'Everything feels disorganized',
 ];
 
 const proofPoints = [
-  "Thousands of vendors ready to work",
-  "Smart tools used by modern planners",
-  "Designed for African event culture",
+  'Thousands of vendors ready to work',
+  'Smart tools used by modern planners',
+  'Designed for African event culture',
 ];
 
 const steps = [
   {
-    step: "01",
-    title: "Create Your Event",
-    text: "Set your date, budget, and vision.",
+    step: '01',
+    title: 'Create Your Event',
+    text: 'Set your date, budget, and vision.',
   },
   {
-    step: "02",
-    title: "Find Vendors",
-    text: "Browse and book verified professionals.",
+    step: '02',
+    title: 'Find Vendors',
+    text: 'Browse and book verified professionals.',
   },
   {
-    step: "03",
-    title: "Manage Everything",
-    text: "Track tasks, payments, and progress.",
+    step: '03',
+    title: 'Manage Everything',
+    text: 'Track tasks, payments, and progress.',
   },
   {
-    step: "04",
-    title: "Execute Seamlessly",
-    text: "Enjoy your event without stress.",
+    step: '04',
+    title: 'Execute Seamlessly',
+    text: 'Enjoy your event without stress.',
   },
 ];
 
 const positioningPoints = [
-  "Planning software",
-  "Vendor marketplace",
-  "Payment infrastructure",
-  "AI-powered automation",
+  'Planning software',
+  'Vendor marketplace',
+  'Payment infrastructure',
+  'AI-powered automation',
 ];
 
 const whyOmaPoints = [
-  "Verified vendors you can trust",
-  "Secure escrow payments",
-  "AI-powered planning assistance",
-  "Built for African realities",
-  "Everything in one platform",
+  'Verified vendors you can trust',
+  'Secure escrow payments',
+  'AI-powered planning assistance',
+  'Built for African realities',
+  'Everything in one platform',
 ];
 
 const serviceBookings = [
   {
-    title: "Weddings",
-    text: "Book full planning, coordination, decor, catering, and guest-flow support for memorable wedding celebrations.",
+    title: 'Weddings',
+    text: 'Book full planning, coordination, decor, catering, and guest-flow support for memorable wedding celebrations.',
   },
   {
-    title: "Baby Showers",
-    text: "Create beautiful intimate moments with styling, food service, setup, and stress-free coordination.",
+    title: 'Baby Showers',
+    text: 'Create beautiful intimate moments with styling, food service, setup, and stress-free coordination.',
   },
   {
-    title: "Bridal Showers",
-    text: "Plan elegant pre-wedding experiences with trusted vendors, curated themes, and smooth execution.",
+    title: 'Bridal Showers',
+    text: 'Plan elegant pre-wedding experiences with trusted vendors, curated themes, and smooth execution.',
   },
   {
-    title: "Decoration",
-    text: "Find decorators for event styling, floral direction, stage setup, table design, and venue transformation.",
+    title: 'Decoration',
+    text: 'Find decorators for event styling, floral direction, stage setup, table design, and venue transformation.',
   },
   {
-    title: "Interior Decor",
-    text: "Book interior styling support for event-ready spaces, private celebrations, and premium visual presentation.",
+    title: 'Interior Decor',
+    text: 'Book interior styling support for event-ready spaces, private celebrations, and premium visual presentation.',
+  },
+];
+
+const portfolioLayers = [
+  {
+    label: 'Hook Layer',
+    title: 'Import Social Proof',
+    text: 'Let vendors connect Instagram or TikTok and pull in visual proof so onboarding feels fast and familiar.',
+  },
+  {
+    label: 'Core Layer',
+    title: 'Build Native OMA Portfolios',
+    text: 'Structured categories, pricing, availability, verified reviews, and case studies help clients choose confidently.',
+  },
+  {
+    label: 'Power Layer',
+    title: 'Enable Trusted Transactions',
+    text: 'Booking, OmaPay escrow, milestone releases, and digital agreements turn discovery into real business.',
   },
 ];
 
 const taglines = [
-  "Where Events Come Together.",
-  "Plan Smart. Celebrate Better.",
+  'Where Events Come Together.',
+  'Plan Smart. Celebrate Better.',
   "Africa's Event Operating System.",
-  "From Idea to Celebration - Seamlessly.",
-  "No Chaos. Just Perfect Events.",
+  'From Idea to Celebration - Seamlessly.',
+  'No Chaos. Just Perfect Events.',
 ];
 
 // --- Components ---
@@ -164,24 +183,15 @@ function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container navbar-inner">
         <a href="#home" className="brand">
-          <img
-            src="/oma-logo.jpeg"
-            alt="OMA Events"
-            className="brand-logo"
-            style={{
-              width: "2.5rem",
-              height: "2.5rem",
-              borderRadius: "0.75rem",
-            }}
-          />
+          <div className="brand-logo">O</div>
           <span className="brand-name">OMA Events</span>
         </a>
 
@@ -199,14 +209,9 @@ function Navbar() {
         </button>
       </div>
 
-      <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
+      <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
         {navLinks.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            className="mobile-link"
-            onClick={() => setIsOpen(false)}
-          >
+          <a key={link.href} href={link.href} className="mobile-link" onClick={() => setIsOpen(false)}>
             {link.label}
           </a>
         ))}
@@ -231,16 +236,14 @@ function Hero() {
               </span>
               Africa's Event Operating System
             </div>
-
+            
             <h1 className="hero-title">
               Plan Perfect Events. <br />
               <span className="hero-gradient-text">Without the Chaos.</span>
             </h1>
-
+            
             <p className="hero-lead">
-              OMA EVENTS is Africa's first all-in-one platform to plan, manage,
-              and execute events with trusted vendors, smart budgeting, and
-              secure payments.
+              OMA EVENTS is Africa's first all-in-one platform to plan, manage, and execute events with trusted vendors, smart budgeting, and secure payments.
             </p>
 
             <div className="hero-actions">
@@ -253,9 +256,7 @@ function Hero() {
             </div>
 
             <div className="hero-trust">
-              <p className="hero-trust-text">
-                Trusted by planners, vendors, and creators across Africa
-              </p>
+              <p className="hero-trust-text">Trusted by planners, vendors, and creators across Africa</p>
               <div className="hero-highlights">
                 {heroHighlights.map((item) => (
                   <div key={item} className="highlight-item">
@@ -270,27 +271,21 @@ function Hero() {
           <div className="hero-visual">
             <div className="visual-glow" />
             <div className="visual-card">
-              <img
-                src="/oma-logo.jpeg"
-                alt="OMA Events flyer and service showcase"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  borderRadius: "1rem",
-                }}
-              />
-
+              <div className="visual-placeholder">
+                <div className="visual-icon-box">
+                  <Calendar className="visual-icon" />
+<img src="/oma-flyer.jpeg" alt="OMA Events flyer" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '1rem' }} />
+              
               <div className="visual-badge">
                 <Star className="badge-icon" />
               </div>
-
+              
               <div className="visual-status">
                 <div className="status-header">
                   <div className="status-dot">
                     <CheckCircle2 className="status-dot-icon" />
                   </div>
-                  <span className="status-label">Gold Standard Events</span>
+                  <span className="status-label">Vendor Verified</span>
                 </div>
                 <div className="status-bar">
                   <div className="status-fill" />
@@ -325,12 +320,9 @@ function ValueProp() {
       <div className="container">
         <div className="section-intro">
           <p className="section-eyebrow">Value Proposition</p>
-          <h2 className="section-title">
-            Everything you need to plan an event in one place.
-          </h2>
+          <h2 className="section-title">Everything you need to plan an event in one place.</h2>
           <p className="section-desc">
-            OMA EVENTS gives you a centralized system to plan, collaborate, pay,
-            and execute your event from idea to celebration.
+            OMA EVENTS gives you a centralized system to plan, collaborate, pay, and execute your event from idea to celebration.
           </p>
         </div>
 
@@ -355,13 +347,9 @@ function Bookings() {
       <div className="container">
         <div className="section-intro">
           <p className="section-eyebrow">Book With OMA</p>
-          <h2 className="section-title">
-            Clients can book the moments that matter most.
-          </h2>
+          <h2 className="section-title">Clients can book the moments that matter most.</h2>
           <p className="section-desc">
-            From weddings to interior decor, OMA EVENTS should be where clients
-            discover services, compare trusted options, and book with
-            confidence.
+            From weddings to interior decor, OMA EVENTS should be where clients discover services, compare trusted options, and book with confidence.
           </p>
         </div>
 
@@ -390,19 +378,52 @@ function Features() {
           <p className="section-eyebrow">Core Features</p>
           <h2 className="section-title">Benefits first, stress out.</h2>
           <p className="section-desc">
-            From planning to payment, every part of the event workflow lives
-            inside one smart system.
+            From planning to payment, every part of the event workflow lives inside one smart system.
           </p>
         </div>
 
         <div className="features-grid">
           {coreFeatures.map((feature, i) => (
             <div key={i} className="feature-card">
-              <div className="feature-icon-box">{feature.icon}</div>
+              <div className="feature-icon-box">
+                {feature.icon}
+              </div>
               <h3 className="feature-title">{feature.title}</h3>
               <p className="feature-text">{feature.text}</p>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Portfolio() {
+  return (
+    <section className="section" id="portfolio">
+      <div className="container">
+        <div className="section-intro">
+          <p className="section-eyebrow">Vendor Portfolio Strategy</p>
+          <h2 className="section-title">Use social proof to attract vendors, then let OMA close the trust gap.</h2>
+          <p className="section-desc">
+            Instagram and TikTok are powerful marketing layers, but OMA EVENTS should be the operating system where vendors are evaluated, booked, and paid.
+          </p>
+        </div>
+
+        <div className="portfolio-grid">
+          {portfolioLayers.map((layer, i) => (
+            <div key={i} className="portfolio-card">
+              <span className="portfolio-label">{layer.label}</span>
+              <h3 className="portfolio-title">{layer.title}</h3>
+              <p className="portfolio-text">{layer.text}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="portfolio-quote">
+          <p className="quote-text">
+            "Instagram and TikTok are the showcase. OMA EVENTS is the execution layer. That is how the platform becomes infrastructure, not just a marketplace."
+          </p>
         </div>
       </div>
     </section>
@@ -417,9 +438,7 @@ function ProblemSolution() {
           <div>
             <div className="problem-header">
               <p className="section-eyebrow">Problem</p>
-              <h2 className="section-title">
-                Event planning is broken. We fixed it.
-              </h2>
+              <h2 className="section-title">Event planning is broken. We fixed it.</h2>
             </div>
 
             <div className="problem-list">
@@ -434,13 +453,9 @@ function ProblemSolution() {
 
           <div className="solution-panel">
             <p className="solution-eyebrow">Solution</p>
-            <h3 className="solution-title">
-              OMA EVENTS brings structure, transparency, and control into your
-              event.
-            </h3>
+            <h3 className="solution-title">OMA EVENTS brings structure, transparency, and control into your event.</h3>
             <p className="solution-text">
-              Everything you need to plan, manage vendors, control budgets, and
-              execute with confidence now lives in one platform.
+              Everything you need to plan, manage vendors, control budgets, and execute with confidence now lives in one platform.
             </p>
           </div>
         </div>
@@ -481,13 +496,9 @@ function Positioning() {
       <div className="container">
         <div className="section-intro">
           <p className="section-eyebrow">Product Positioning</p>
-          <h2 className="section-title">
-            Not just an app. An Event Operating System.
-          </h2>
+          <h2 className="section-title">Not just an app. An Event Operating System.</h2>
           <p className="section-desc">
-            OMA EVENTS combines planning software, vendor discovery, payment
-            infrastructure, and AI-powered automation into one powerful
-            ecosystem for modern event execution.
+            OMA EVENTS combines planning software, vendor discovery, payment infrastructure, and AI-powered automation into one powerful ecosystem for modern event execution.
           </p>
         </div>
 
@@ -531,22 +542,15 @@ function EmotionalClose() {
       <div className="container">
         <div className="emotional-grid">
           <div className="quote-box">
-            <h3 className="quote-title">
-              "Every event tells a story. Make yours unforgettable."
-            </h3>
+            <h3 className="quote-title">"Every event tells a story. Make yours unforgettable."</h3>
             <p className="quote-author">OMA Events</p>
           </div>
 
           <div className="emotional-content">
             <p className="emotional-eyebrow">Emotional Close</p>
-            <h3 className="emotional-title">
-              Bring your vision to life without stress, confusion, or
-              compromise.
-            </h3>
+            <h3 className="emotional-title">Bring your vision to life without stress, confusion, or compromise.</h3>
             <p className="emotional-text">
-              OMA EVENTS gives you the tools, the structure, and the confidence
-              to create memorable celebrations with clarity from start to
-              finish.
+              OMA EVENTS gives you the tools, the structure, and the confidence to create memorable celebrations with clarity from start to finish.
             </p>
           </div>
         </div>
@@ -565,20 +569,13 @@ function ClosingCTA() {
           Start planning <span className="cta-gradient">smarter today.</span>
         </h2>
         <p className="cta-desc">
-          Join the future of event planning in Africa with a platform built for
-          trust, beauty, and seamless execution.
+          Join the future of event planning in Africa with a platform built for trust, beauty, and seamless execution.
         </p>
         <div className="cta-actions">
-          <a href="#home" className="btn-primary">
-            Get Started Free
-          </a>
-          <a href="#features" className="btn-secondary">
-            Browse Vendors
-          </a>
+          <a href="#home" className="btn-primary">Get Started Free</a>
+          <a href="#features" className="btn-secondary">Browse Vendors</a>
         </div>
-        <p className="cta-note">
-          Structured planning. Verified vendors. Secure payments.
-        </p>
+        <p className="cta-note">Structured planning. Verified vendors. Secure payments.</p>
       </div>
     </section>
   );
@@ -589,9 +586,7 @@ function Taglines() {
     <section className="taglines-section">
       <div className="marquee-track">
         {[...taglines, ...taglines].map((tagline, i) => (
-          <span key={i} className="marquee-text">
-            {tagline}
-          </span>
+          <span key={i} className="marquee-text">{tagline}</span>
         ))}
       </div>
     </section>
@@ -609,8 +604,7 @@ function Footer() {
               <span className="footer-logo-text">OMA Events</span>
             </div>
             <p className="footer-desc">
-              Africa's first all-in-one platform to plan, manage, and execute
-              events.
+              Africa's first all-in-one platform to plan, manage, and execute events.
             </p>
             <div className="social-links">
               <a href="#" className="social-link">
@@ -624,80 +618,39 @@ function Footer() {
               </a>
             </div>
           </div>
-
+          
           <div>
             <h4 className="footer-heading">Product</h4>
             <ul className="footer-links">
-              <li>
-                <a href="#features" className="footer-link">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a href="#bookings" className="footer-link">
-                  Book Services
-                </a>
-              </li>
-              <li>
-                <a href="#how-it-works" className="footer-link">
-                  How It Works
-                </a>
-              </li>
+              <li><a href="#features" className="footer-link">Features</a></li>
+              <li><a href="#bookings" className="footer-link">Book Services</a></li>
+              <li><a href="#portfolio" className="footer-link">Vendor Portfolio</a></li>
+              <li><a href="#how-it-works" className="footer-link">How It Works</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="footer-heading">Company</h4>
             <ul className="footer-links">
-              <li>
-                <a href="#" className="footer-link">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="footer-link">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="footer-link">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="footer-link">
-                  Contact
-                </a>
-              </li>
+              <li><a href="#" className="footer-link">About Us</a></li>
+              <li><a href="#" className="footer-link">Careers</a></li>
+              <li><a href="#" className="footer-link">Blog</a></li>
+              <li><a href="#" className="footer-link">Contact</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="footer-heading">Legal</h4>
             <ul className="footer-links">
-              <li>
-                <a href="#" className="footer-link">
-                  Privacy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="footer-link">
-                  Terms
-                </a>
-              </li>
-              <li>
-                <a href="#" className="footer-link">
-                  Security
-                </a>
-              </li>
+              <li><a href="#" className="footer-link">Privacy</a></li>
+              <li><a href="#" className="footer-link">Terms</a></li>
+              <li><a href="#" className="footer-link">Security</a></li>
             </ul>
           </div>
         </div>
-
+        
         <div className="footer-bottom">
-          <p className="footer-copyright">
-            © 2026 OMA Events Inc. All rights reserved.
-          </p>
+          <p className="footer-copyright">© 2026 OMA Events Inc. All rights reserved.</p>
           <div className="footer-contact">
             <Mail className="contact-icon" />
             hello@omaevents.com
@@ -717,6 +670,7 @@ function App() {
       <ValueProp />
       <Bookings />
       <Features />
+      <Portfolio />
       <ProblemSolution />
       <HowItWorks />
       <Positioning />

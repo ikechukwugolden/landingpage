@@ -825,6 +825,66 @@ img {
   line-height: 1.75;
 }
 
+/* Portfolio */
+.portfolio-grid {
+  display: grid;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.portfolio-card {
+  position: relative;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+}
+
+.portfolio-label {
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  transform: translateY(-50%);
+  padding: 0.25rem 0.75rem;
+  background-color: #fbbf24;
+  color: #0f172a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 9999px;
+}
+
+.portfolio-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+}
+
+.portfolio-text {
+  color: #94a3b8;
+}
+
+.portfolio-quote {
+  padding: 2rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(99, 102, 241, 0.1));
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  text-align: center;
+}
+
+.quote-text {
+  font-size: 1.125rem;
+  color: #cbd5e1;
+  font-style: italic;
+}
+
 /* Problem / Solution */
 .split-section {
   padding: 6rem 0;

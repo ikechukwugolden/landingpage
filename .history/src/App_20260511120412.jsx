@@ -24,6 +24,7 @@ import {
 const navLinks = [
   { href: "#bookings", label: "Book Services" },
   { href: "#features", label: "Features" },
+  { href: "#portfolio", label: "Portfolio" },
   { href: "#how-it-works", label: "How It Works" },
   { href: "#why-oma", label: "Why OMA" },
   { href: "#closing", label: "Get Started" },
@@ -148,6 +149,24 @@ const serviceBookings = [
   },
 ];
 
+const portfolioLayers = [
+  {
+    label: "Hook Layer",
+    title: "Import Social Proof",
+    text: "Let vendors connect Instagram or TikTok and pull in visual proof so onboarding feels fast and familiar.",
+  },
+  {
+    label: "Core Layer",
+    title: "Build Native OMA Portfolios",
+    text: "Structured categories, pricing, availability, verified reviews, and case studies help clients choose confidently.",
+  },
+  {
+    label: "Power Layer",
+    title: "Enable Trusted Transactions",
+    text: "Booking, OmaPay escrow, milestone releases, and digital agreements turn discovery into real business.",
+  },
+];
+
 const taglines = [
   "Where Events Come Together.",
   "Plan Smart. Celebrate Better.",
@@ -172,18 +191,9 @@ function Navbar() {
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="container navbar-inner">
         <a href="#home" className="brand">
-          <img
-            src="/oma-logo.jpeg"
-            alt="OMA Events"
-            className="brand-logo"
-            style={{
-              width: "2.5rem",
-              height: "2.5rem",
-              borderRadius: "0.75rem",
-            }}
-          />
-          <span className="brand-name">OMA Events</span>
-        </a>
+  <img src="/oma-logo.jpeg" alt="OMA Events" className="brand-logo" style={{ width: '2.5rem', height: '2.5rem', borderRadius: '0.75rem' }} />
+  <span className="brand-name">OMA Events</span>
+</a>
 
         <div className="nav-links">
           {navLinks.map((link) => (
@@ -408,6 +418,45 @@ function Features() {
     </section>
   );
 }
+
+// function Portfolio() {
+//   return (
+//     <section className="section" id="portfolio">
+//       <div className="container">
+//         <div className="section-intro">
+//           <p className="section-eyebrow">Vendor Portfolio Strategy</p>
+//           <h2 className="section-title">
+//             Use social proof to attract vendors, then let OMA close the trust
+//             gap.
+//           </h2>
+//           <p className="section-desc">
+//             Instagram and TikTok are powerful marketing layers, but OMA EVENTS
+//             should be the operating system where vendors are evaluated, booked,
+//             and paid.
+//           </p>
+//         </div>
+
+//         <div className="portfolio-grid">
+//           {portfolioLayers.map((layer, i) => (
+//             <div key={i} className="portfolio-card">
+//               <span className="portfolio-label">{layer.label}</span>
+//               <h3 className="portfolio-title">{layer.title}</h3>
+//               <p className="portfolio-text">{layer.text}</p>
+//             </div>
+//           ))}
+//         </div>
+
+//         <div className="portfolio-quote">
+//           <p className="quote-text">
+//             "Instagram and TikTok are the showcase. OMA EVENTS is the execution
+//             layer. That is how the platform becomes infrastructure, not just a
+//             marketplace."
+//           </p>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
 
 function ProblemSolution() {
   return (
@@ -639,6 +688,11 @@ function Footer() {
                 </a>
               </li>
               <li>
+                <a href="#portfolio" className="footer-link">
+                  Vendor Portfolio
+                </a>
+              </li>
+              <li>
                 <a href="#how-it-works" className="footer-link">
                   How It Works
                 </a>
@@ -717,6 +771,7 @@ function App() {
       <ValueProp />
       <Bookings />
       <Features />
+      <Portfolio />
       <ProblemSolution />
       <HowItWorks />
       <Positioning />

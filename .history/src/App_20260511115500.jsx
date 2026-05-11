@@ -24,6 +24,7 @@ import {
 const navLinks = [
   { href: "#bookings", label: "Book Services" },
   { href: "#features", label: "Features" },
+  { href: "#portfolio", label: "Portfolio" },
   { href: "#how-it-works", label: "How It Works" },
   { href: "#why-oma", label: "Why OMA" },
   { href: "#closing", label: "Get Started" },
@@ -145,6 +146,24 @@ const serviceBookings = [
   {
     title: "Interior Decor",
     text: "Book interior styling support for event-ready spaces, private celebrations, and premium visual presentation.",
+  },
+];
+
+const portfolioLayers = [
+  {
+    label: "Hook Layer",
+    title: "Import Social Proof",
+    text: "Let vendors connect Instagram or TikTok and pull in visual proof so onboarding feels fast and familiar.",
+  },
+  {
+    label: "Core Layer",
+    title: "Build Native OMA Portfolios",
+    text: "Structured categories, pricing, availability, verified reviews, and case studies help clients choose confidently.",
+  },
+  {
+    label: "Power Layer",
+    title: "Enable Trusted Transactions",
+    text: "Booking, OmaPay escrow, milestone releases, and digital agreements turn discovery into real business.",
   },
 ];
 
@@ -271,7 +290,7 @@ function Hero() {
             <div className="visual-glow" />
             <div className="visual-card">
               <img
-                src="/oma-logo.jpeg"
+                src="/oma-flyer.jpeg"
                 alt="OMA Events flyer and service showcase"
                 style={{
                   width: "100%",
@@ -408,6 +427,8 @@ function Features() {
     </section>
   );
 }
+
+
 
 function ProblemSolution() {
   return (
@@ -639,6 +660,11 @@ function Footer() {
                 </a>
               </li>
               <li>
+                <a href="#portfolio" className="footer-link">
+                  Vendor Portfolio
+                </a>
+              </li>
+              <li>
                 <a href="#how-it-works" className="footer-link">
                   How It Works
                 </a>
@@ -717,6 +743,7 @@ function App() {
       <ValueProp />
       <Bookings />
       <Features />
+      <Portfolio />
       <ProblemSolution />
       <HowItWorks />
       <Positioning />
