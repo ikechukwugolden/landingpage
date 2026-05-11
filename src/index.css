@@ -484,7 +484,7 @@ img {
   fill: #fbbf24;
 }
 
-.visual-status {
+/* .visual-status {
   position: absolute;
   bottom: 3rem;
   left: 2rem;
@@ -495,9 +495,9 @@ img {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   border: 1px solid #334155;
   max-width: 200px;
-}
+} */
 
-.status-header {
+/* .status-header {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -524,7 +524,7 @@ img {
   font-size: 0.875rem;
   font-weight: 600;
   color: #ffffff;
-}
+} */
 
 .status-bar {
   height: 0.375rem;
