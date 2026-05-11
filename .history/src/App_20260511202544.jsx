@@ -761,7 +761,7 @@ function Footer() {
           <p className="footer-copyright">
             © 2026 OMA Events Inc. All rights reserved.
           </p>
-          <p className="footer-copyright">Powered by Ugnesis</p>
+          <p>Powered by </p>
           <div className="footer-contact">
             <Mail className="contact-icon" />
             hello@omaevents.com
