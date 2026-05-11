@@ -285,7 +285,7 @@ function Hero() {
                 <Star className="badge-icon" />
               </div>
 
-              <div className="visual-status">
+              {/* <div className="visual-status">
                 {/* <div className="status-header">
                   <div className="status-dot">
                     <CheckCircle2 className="status-dot-icon" />
@@ -294,7 +294,7 @@ function Hero() {
                 {/* <div className="status-bar">
                   <div className="status-fill" />
                 </div> */}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

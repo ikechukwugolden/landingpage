@@ -484,7 +484,7 @@ img {
   fill: #fbbf24;
 }
 
-/* .visual-status {
+.visual-status {
   position: absolute;
   bottom: 3rem;
   left: 2rem;
@@ -495,7 +495,7 @@ img {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   border: 1px solid #334155;
   max-width: 200px;
-} */
+}
 
 /* .status-header {
   display: flex;

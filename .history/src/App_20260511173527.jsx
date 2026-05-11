@@ -286,14 +286,15 @@ function Hero() {
               </div>
 
               <div className="visual-status">
-                {/* <div className="status-header">
+                <div className="status-header">
                   <div className="status-dot">
                     <CheckCircle2 className="status-dot-icon" />
                   </div>
-                </div> */}
-                {/* <div className="status-bar">
+                 
+                </div>
+                <div className="status-bar">
                   <div className="status-fill" />
-                </div> */}
+                </div>
               </div>
             </div>
           </div>

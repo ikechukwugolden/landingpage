@@ -291,9 +291,9 @@ function Hero() {
                     <CheckCircle2 className="status-dot-icon" />
                   </div>
                 </div> */}
-                {/* <div className="status-bar">
+                <div className="status-bar">
                   <div className="status-fill" />
-                </div> */}
+                </div>
               </div>
             </div>
           </div>
