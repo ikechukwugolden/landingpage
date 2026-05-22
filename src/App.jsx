@@ -1,4 +1,16 @@
-import React, { useState, useEffect } from "react";
+
+import { useEffect, useState } from "react";
+import { Link, Navigate, Route, Routes } from "react-router-dom";
+import Signup from "./pages/auth/Signup";
+import Login from "./pages/auth/Login";
+import Onboarding from "./pages/auth/Onboarding";
+import Dashboard from "./pages/dashboard/Dashboard";
+import WorkspacePage from "./pages/dashboard/WorkspacePage";
+import CreateEvent from "./pages/events/CreateEvent";
+import Marketplace from "./pages/marketplace/Marketplace";
+import OmaAI from "./pages/marketplace/OmaAi";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import { useAuth } from "./context/AuthContext";
 import {
   Menu,
   X,
@@ -20,15 +32,18 @@ import {
   Crown,
   Diamond,
 } from "lucide-react";
-
-// --- Data Constants ---
+import Planners from "./pages/planners";
+import Vendors from "./pages/vendors";
+import Venues from "./pages/venues";
+import Clients from "./pages/clients";
+import Enterprise from "./pages/enterprise";
 
 const navLinks = [
-  { href: "#bookings", label: "Book Services" },
-  { href: "#features", label: "Features" },
-  { href: "#how-it-works", label: "How It Works" },
-  { href: "#why-oma", label: "Why OMA" },
-  { href: "#closing", label: "Get Started" },
+  { id: "planners", label: "Planners", href: "/planners" },
+  { id: "vendors", label: "Vendors", href: "/vendors" },
+  { id: "venues", label: "Venues", href: "/venues" },
+  { id: "clients", label: "Clients", href: "/clients" },
+  { id: "enterprise", label: "OmaPro", href: "/enterprise" },
 ];
 
 const heroHighlights = [
@@ -158,33 +173,36 @@ const taglines = [
   "No Chaos. Just Perfect Events.",
 ];
 
-// --- Components ---
-
 function ScrollProgress() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
       const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       setProgress(scrollPercent);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
-    <div
-      className="scroll-progress"
-      style={{ width: `${progress}%` }}
-    />
-  );
+  return <div className="scroll-progress" style={{ width: `${progress}%` }} />;
 }
 
 function FloatingParticles() {
   return (
-    <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 1, overflow: "hidden" }}>
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        pointerEvents: "none",
+        zIndex: 1,
+        overflow: "hidden",
+      }}
+    >
       {[...Array(6)].map((_, i) => (
         <div
           key={i}
@@ -207,6 +225,13 @@ function FloatingParticles() {
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { user, onboardingCompleted } = useAuth();
+
+  const startLink = user
+    ? onboardingCompleted
+      ? "/dashboard"
+      : "/onboarding"
+    : "/signup";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -217,7 +242,7 @@ function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="container navbar-inner">
-        <a href="#home" className="brand">
+        <Link to="/" className="brand">
           <div
             style={{
               width: "2.5rem",
@@ -236,18 +261,23 @@ function Navbar() {
             <Crown size={20} />
           </div>
           <span className="brand-name">OMA Events</span>
-        </a>
+        </Link>
 
         <div className="nav-links">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="nav-link">
+            <Link key={link.id} to={link.href} className="nav-link">
               {link.label}
-            </a>
+            </Link>
           ))}
-          <button className="nav-cta">
+          {user && (
+            <Link to="/dashboard" className="nav-link">
+              Dashboard
+            </Link>
+          )}
+          <Link to={startLink} className="nav-cta">
             <Sparkles size={14} style={{ marginRight: "6px" }} />
-            Get Started
-          </button>
+            {user ? "Go to App" : "Get Started"}
+          </Link>
         </div>
 
         <button className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
@@ -257,16 +287,23 @@ function Navbar() {
 
       <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
         {navLinks.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
+          <Link
+            key={link.id}
+            to={link.href}
             className="mobile-link"
             onClick={() => setIsOpen(false)}
           >
             {link.label}
-          </a>
+          </Link>
         ))}
-        <button className="mobile-cta">Get Started</button>
+        {user && (
+          <Link to="/dashboard" className="mobile-link" onClick={() => setIsOpen(false)}>
+            Dashboard
+          </Link>
+        )}
+        <Link to={startLink} className="mobile-cta" onClick={() => setIsOpen(false)}>
+          {user ? "Go to App" : "Get Started"}
+        </Link>
       </div>
     </nav>
   );
@@ -302,12 +339,12 @@ function Hero() {
             </p>
 
             <div className="hero-actions">
-              <a href="#closing" className="btn-primary">
+              <Link to="/signup" className="btn-primary">
                 Start Planning Your Event <ArrowRight size={18} />
-              </a>
-              <a href="#features" className="btn-secondary">
+              </Link>
+              <Link to="/vendors" className="btn-secondary">
                 Explore Vendors
-              </a>
+              </Link>
             </div>
 
             <div className="hero-trust">
@@ -343,8 +380,7 @@ function Hero() {
                 <Star className="badge-icon" />
               </div>
 
-              <div className="visual-status">
-              </div>
+              <div className="visual-status" />
             </div>
           </div>
         </div>
@@ -360,7 +396,13 @@ function StatsBand() {
         {proofPoints.map((point, i) => (
           <div key={i} className="stat-card">
             <div className="stat-badge">
-              {i === 0 ? <Diamond size={16} /> : i === 1 ? <Sparkles size={16} /> : <Crown size={16} />}
+              {i === 0 ? (
+                <Diamond size={16} />
+              ) : i === 1 ? (
+                <Sparkles size={16} />
+              ) : (
+                <Crown size={16} />
+              )}
             </div>
             <span className="stat-text">{point}</span>
           </div>
@@ -412,7 +454,13 @@ function Bookings() {
           <h2 className="section-title">
             Clients can book the moments that matter most.
           </h2>
-          <div className="gold-ornament" style={{ background: "linear-gradient(90deg, transparent, rgba(251,191,36,0.5), transparent)" }} />
+          <div
+            className="gold-ornament"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, rgba(251,191,36,0.5), transparent)",
+            }}
+          />
           <p className="section-desc">
             From weddings to interior decor, OMA EVENTS should be where clients
             discover services, compare trusted options, and book with
@@ -426,9 +474,9 @@ function Bookings() {
               <span className="booking-tag">Book Now</span>
               <h3 className="booking-title">{service.title}</h3>
               <p className="booking-text">{service.text}</p>
-              <a href="#closing" className="booking-action">
+              <Link to="/signup" className="booking-action">
                 Book {service.title} <ChevronRight className="action-icon" />
-              </a>
+              </Link>
             </div>
           ))}
         </div>
@@ -542,7 +590,13 @@ function Positioning() {
           <h2 className="section-title">
             Not just an app. An Event Operating System.
           </h2>
-          <div className="gold-ornament" style={{ background: "linear-gradient(90deg, transparent, rgba(251,191,36,0.5), transparent)" }} />
+          <div
+            className="gold-ornament"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, rgba(251,191,36,0.5), transparent)",
+            }}
+          />
           <p className="section-desc">
             OMA EVENTS combines planning software, vendor discovery, payment
             infrastructure, and AI-powered automation into one powerful
@@ -594,7 +648,7 @@ function EmotionalClose() {
             <h3 className="quote-title">
               "Every event tells a story. Make yours unforgettable."
             </h3>
-            <p className="quote-author">— OMA Events</p>
+            <p className="quote-author">- OMA Events</p>
           </div>
 
           <div className="emotional-content">
@@ -629,13 +683,13 @@ function ClosingCTA() {
           trust, beauty, and seamless execution.
         </p>
         <div className="cta-actions">
-          <a href="#home" className="btn-primary">
+          <Link to="/signup" className="btn-primary">
             <Sparkles size={18} style={{ marginRight: "8px" }} />
             Get Started Free
-          </a>
-          <a href="#features" className="btn-secondary">
+          </Link>
+          <Link to="/vendors" className="btn-secondary">
             Browse Vendors
-          </a>
+          </Link>
         </div>
         <p className="cta-note">
           Structured planning. Verified vendors. Secure payments.
@@ -692,19 +746,19 @@ function Footer() {
             <h4 className="footer-heading">Product</h4>
             <ul className="footer-links">
               <li>
-                <a href="#features" className="footer-link">
-                  Features
-                </a>
+                <Link to="/planners" className="footer-link">
+                  Planners
+                </Link>
               </li>
               <li>
-                <a href="#bookings" className="footer-link">
-                  Book Services
-                </a>
+                <Link to="/vendors" className="footer-link">
+                  Vendors
+                </Link>
               </li>
               <li>
-                <a href="#how-it-works" className="footer-link">
-                  How It Works
-                </a>
+                <Link to="/clients" className="footer-link">
+                  Clients
+                </Link>
               </li>
             </ul>
           </div>
@@ -718,14 +772,14 @@ function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  Careers
-                </a>
+                <Link to="/venues" className="footer-link">
+                  Venues
+                </Link>
               </li>
               <li>
-                <a href="#" className="footer-link">
-                  Blog
-                </a>
+                <Link to="/enterprise" className="footer-link">
+                  OmaPro
+                </Link>
               </li>
               <li>
                 <a href="#" className="footer-link">
@@ -772,7 +826,7 @@ function Footer() {
   );
 }
 
-function App() {
+function LandingPage() {
   return (
     <div>
       <ScrollProgress />
@@ -792,6 +846,145 @@ function App() {
       <Taglines />
       <Footer />
     </div>
+  );
+}
+
+function App() {
+  const { onboardingCompleted, user } = useAuth();
+
+  const authenticatedHome =
+    user && !onboardingCompleted ? "/onboarding" : "/dashboard";
+
+  return (
+    <Routes>
+      {/* LANDING PAGE - ALLOWS ACCESSIBILITY AT ALL TIMES */}
+      <Route path="/" element={<LandingPage />} />
+
+      {/* AUTH */}
+      <Route
+        path="/signup"
+        element={user ? <Navigate to={authenticatedHome} replace /> : <Signup />}
+      />
+
+      <Route
+        path="/login"
+        element={user ? <Navigate to={authenticatedHome} replace /> : <Login />}
+      />
+
+      <Route
+        path="/onboarding"
+        element={
+          !user ? (
+            <Navigate to="/signup" replace />
+          ) : onboardingCompleted ? (
+            <Navigate to="/dashboard" replace />
+          ) : (
+            <Onboarding />
+          )
+        }
+      />
+
+      {/* DASHBOARD */}
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/events"
+        element={
+          <ProtectedRoute>
+            <CreateEvent />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/marketplace"
+        element={
+          <ProtectedRoute>
+            <Marketplace />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/messages"
+        element={
+          <ProtectedRoute>
+            <WorkspacePage
+              title="Messages"
+              description="Stay connected with clients, vendors, and your internal team in one inbox."
+              highlights={[
+                { title: "Unread", value: "08" },
+                { title: "Vendors", value: "14 threads" },
+                { title: "Response time", value: "12 min" },
+              ]}
+            />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/notifications"
+        element={
+          <ProtectedRoute>
+            <WorkspacePage
+              title="Notifications"
+              description="Track approvals, guest updates, deadlines, and booking changes from a single place."
+              highlights={[
+                { title: "New alerts", value: "06" },
+                { title: "Approvals", value: "03 pending" },
+                { title: "Today", value: "09 updates" },
+              ]}
+            />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/payments"
+        element={
+          <ProtectedRoute>
+            <WorkspacePage
+              title="Payments"
+              description="Monitor invoices, deposits, and settlement progress with secure payment visibility."
+              highlights={[
+                { title: "Processed", value: "NGN 2.4M" },
+                { title: "Pending", value: "05 invoices" },
+                { title: "Escrow", value: "02 releases" },
+              ]}
+            />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/oma-ai"
+        element={
+          <ProtectedRoute>
+            <OmaAI />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* SECONDARY PAGES */}
+      <Route path="/planners" element={<Planners />} />
+      <Route path="/vendors" element={<Vendors />} />
+      <Route path="/venues" element={<Venues />} />
+      <Route path="/clients" element={<Clients />} />
+      <Route path="/enterprise" element={<Enterprise />} />
+
+      {/* FALLBACK */}
+      <Route
+        path="*"
+        element={<Navigate to={user ? authenticatedHome : "/"} replace />}
+      />
+    </Routes>
   );
 }
 
