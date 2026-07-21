@@ -16,6 +16,7 @@ import {
   Clock3,
   Sparkles,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Venues() {
   const venueFeatures = [
@@ -78,13 +79,13 @@ export default function Venues() {
               </p>
 
               <div className="planner-actions">
-                <button className="btn-primary">
-                  List Your Venue
-                </button>
+                <Link to="/signup" className="btn-primary">
+                  <Sparkles size={18} /> List Your Venue
+                </Link>
 
-                <button className="btn-secondary">
+                <Link to="/venue-marketplace" className="btn-secondary">
                   Explore Dashboard
-                </button>
+                </Link>
               </div>
 
               {/* STATS */}
@@ -292,13 +293,14 @@ export default function Venues() {
                 </div>
               </div>
 
-              <button
+              <Link
+                to="/signup"
                 className="btn-primary"
-                style={{ marginTop: "2rem" }}
+                style={{ marginTop: "2rem", display: "inline-flex" }}
               >
                 Join OMA
                 <ArrowRight size={18} />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -326,13 +328,13 @@ export default function Venues() {
           </p>
 
           <div className="cta-actions">
-            <button className="btn-primary">
-              Get Started
-            </button>
+            <Link to="/signup" className="btn-primary">
+              <Sparkles size={18} /> Get Started
+            </Link>
 
-            <button className="btn-secondary">
+            <Link to="/contact" className="btn-secondary">
               Book Demo
-            </button>
+            </Link>
           </div>
         </div>
       </section>

@@ -91,7 +91,7 @@ const AGENTS = {
 /* =========================================================
    💬 MAIN CHAT FUNCTION (MULTI-AGENT READY)
 ========================================================= */
-export async function getAIResponse(userMessage, pageContext = "") {
+export async function getAIResponse(userMessage, pageContext = "", userRole = "") {
   try {
     const agent = routeAgent(userMessage);
     const system = AGENTS[agent];
@@ -99,10 +99,13 @@ export async function getAIResponse(userMessage, pageContext = "") {
     const prompt = `
 ${system}
 
+${userRole ? `USER ROLE: ${userRole}` : ""}
+
 SYSTEM RULES:
 - Be concise and structured
 - Focus only on event-related intelligence
 - If page context exists, prioritize it
+- Adapt advice based on user role
 
 PAGE CONTEXT:
 ${pageContext || "None"}

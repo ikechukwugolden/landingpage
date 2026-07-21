@@ -6,14 +6,16 @@ import {
 } from "firebase/firestore";
 
 import DashboardLayout from "../../components/layout/DashboardLayout";
-import { db } from "../../firebase/firebase";
+import { auth, db } from "../../firebase/firebase";
 
 export default function CreateEvent() {
   const [form, setForm] = useState({
     budget: "",
     date: "",
     description: "",
+    eventType: "wedding",
     location: "",
+    status: "planning",
     title: "",
   });
 
@@ -23,11 +25,7 @@ export default function CreateEvent() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    setForm((currentForm) => ({
-      ...currentForm,
-      [name]: value,
-    }));
+    setForm((currentForm) => ({ ...currentForm, [name]: value }));
   };
 
   const handleSubmit = async (event) => {
@@ -37,9 +35,24 @@ export default function CreateEvent() {
     setError("");
 
     try {
+      const uid = auth.currentUser?.uid;
+      if (!uid) {
+        setError("You must be logged in to create an event");
+        setLoading(false);
+        return;
+      }
+
       await addDoc(collection(db, "events"), {
         ...form,
+        budget: form.budget ? Number(form.budget) : 0,
+        userId: uid,
         createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        bookings: 0,
+        revenue: 0,
+        checklist: [],
+        tasks: [],
+        guests: [],
       });
 
       setSuccess(true);
@@ -47,7 +60,9 @@ export default function CreateEvent() {
         budget: "",
         date: "",
         description: "",
+        eventType: "wedding",
         location: "",
+        status: "planning",
         title: "",
       });
     } catch (submitError) {
@@ -63,27 +78,15 @@ export default function CreateEvent() {
       <div className="dashboard-page">
         <div className="dashboard-topbar">
           <div className="dashboard-header">
-            <div className="dashboard-badge">
-              Event Builder
-            </div>
-
+            <div className="dashboard-badge">Event Builder</div>
             <h1>Create a new event</h1>
             <p>Capture the key details, lock the plan, and move straight into execution.</p>
           </div>
         </div>
 
         <div className="dashboard-form-card glass">
-          {success && (
-            <div className="auth-success">
-              Event created successfully.
-            </div>
-          )}
-
-          {error && (
-            <div className="auth-error">
-              {error}
-            </div>
-          )}
+          {success && <div className="auth-success">Event created successfully.</div>}
+          {error && <div className="auth-error">{error}</div>}
 
           <form onSubmit={handleSubmit} className="auth-form-fields">
             <input
@@ -92,6 +95,7 @@ export default function CreateEvent() {
               name="title"
               value={form.title}
               onChange={handleChange}
+              required
             />
 
             <div className="auth-grid-two">
@@ -102,14 +106,44 @@ export default function CreateEvent() {
                 value={form.date}
                 onChange={handleChange}
               />
-
               <input
                 className="auth-input"
-                placeholder="Budget"
+                type="number"
+                placeholder="Budget (₦)"
                 name="budget"
                 value={form.budget}
                 onChange={handleChange}
               />
+            </div>
+
+            <div className="auth-grid-two">
+              <select
+                className="auth-input"
+                name="eventType"
+                value={form.eventType}
+                onChange={handleChange}
+              >
+                <option value="wedding">Wedding</option>
+                <option value="birthday">Birthday</option>
+                <option value="corporate">Corporate</option>
+                <option value="baby-shower">Baby Shower</option>
+                <option value="bridal-shower">Bridal Shower</option>
+                <option value="conference">Conference</option>
+                <option value="concert">Concert</option>
+                <option value="other">Other</option>
+              </select>
+
+              <select
+                className="auth-input"
+                name="status"
+                value={form.status}
+                onChange={handleChange}
+              >
+                <option value="planning">Planning</option>
+                <option value="in-progress">In Progress</option>
+                <option value="completed">Completed</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
             </div>
 
             <input
