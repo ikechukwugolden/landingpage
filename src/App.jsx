@@ -3,12 +3,33 @@ import { useEffect, useState } from "react";
 import { Link, Navigate, Route, Routes } from "react-router-dom";
 import Signup from "./pages/auth/Signup";
 import Login from "./pages/auth/Login";
+import ForgotPassword from "./pages/auth/ForgotPassword";
 import Onboarding from "./pages/auth/Onboarding";
 import Dashboard from "./pages/dashboard/Dashboard";
 import WorkspacePage from "./pages/dashboard/WorkspacePage";
 import CreateEvent from "./pages/events/CreateEvent";
+import EventList from "./pages/events/EventList";
 import Marketplace from "./pages/marketplace/Marketplace";
 import OmaAI from "./pages/marketplace/OmaAi";
+import GuestManagement from "./pages/guests/GuestManagement";
+import BudgetManagement from "./pages/budget/BudgetManagement";
+import Messaging from "./pages/messages/Messaging";
+import VenueMarketplace from "./pages/venues/VenueMarketplace";
+import CalendarView from "./pages/calendar/CalendarView";
+import OmaPay from "./pages/payments/OmaPay";
+import AdminPanel from "./pages/admin/AdminPanel";
+import Analytics from "./pages/analytics/Analytics";
+import OmaCloud from "./pages/cloud/OmaCloud";
+import Community from "./pages/community/Community";
+import SocialFeed from "./pages/social/SocialFeed";
+import EnterpriseDashboard from "./pages/enterprise/EnterpriseDashboard";
+import Notifications from "./pages/notifications/Notifications";
+import About from "./pages/marketing/About";
+import Pricing from "./pages/marketing/Pricing";
+import Contact from "./pages/marketing/Contact";
+import FAQs from "./pages/marketing/FAQs";
+import Blog from "./pages/marketing/Blog";
+import Careers from "./pages/marketing/Careers";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { useAuth } from "./context/AuthContext";
 import {
@@ -44,6 +65,8 @@ const navLinks = [
   { id: "venues", label: "Venues", href: "/venues" },
   { id: "clients", label: "Clients", href: "/clients" },
   { id: "enterprise", label: "OmaPro", href: "/enterprise" },
+  { id: "pricing", label: "Pricing", href: "/pricing" },
+  { id: "about", label: "About", href: "/about" },
 ];
 
 const heroHighlights = [
@@ -767,9 +790,9 @@ function Footer() {
             <h4 className="footer-heading">Company</h4>
             <ul className="footer-links">
               <li>
-                <a href="#" className="footer-link">
+                <Link to="/about" className="footer-link">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
                 <Link to="/venues" className="footer-link">
@@ -782,16 +805,36 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="#" className="footer-link">
+                <Link to="/contact" className="footer-link">
                   Contact
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link to="/careers" className="footer-link">
+                  Careers
+                </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="footer-heading">Legal</h4>
+            <h4 className="footer-heading">Resources</h4>
             <ul className="footer-links">
+              <li>
+                <Link to="/pricing" className="footer-link">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog" className="footer-link">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link to="/faqs" className="footer-link">
+                  FAQs
+                </Link>
+              </li>
               <li>
                 <a href="#" className="footer-link">
                   Privacy
@@ -800,11 +843,6 @@ function Footer() {
               <li>
                 <a href="#" className="footer-link">
                   Terms
-                </a>
-              </li>
-              <li>
-                <a href="#" className="footer-link">
-                  Security
                 </a>
               </li>
             </ul>
@@ -857,120 +895,42 @@ function App() {
 
   return (
     <Routes>
-      {/* LANDING PAGE - ALLOWS ACCESSIBILITY AT ALL TIMES */}
+      {/* LANDING PAGE */}
       <Route path="/" element={<LandingPage />} />
 
       {/* AUTH */}
-      <Route
-        path="/signup"
-        element={user ? <Navigate to={authenticatedHome} replace /> : <Signup />}
-      />
-
-      <Route
-        path="/login"
-        element={user ? <Navigate to={authenticatedHome} replace /> : <Login />}
-      />
-
-      <Route
-        path="/onboarding"
-        element={
-          !user ? (
-            <Navigate to="/signup" replace />
-          ) : onboardingCompleted ? (
-            <Navigate to="/dashboard" replace />
-          ) : (
-            <Onboarding />
-          )
-        }
-      />
+      <Route path="/signup" element={user ? <Navigate to={authenticatedHome} replace /> : <Signup />} />
+      <Route path="/login" element={user ? <Navigate to={authenticatedHome} replace /> : <Login />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/onboarding" element={!user ? <Navigate to="/signup" replace /> : onboardingCompleted ? <Navigate to="/dashboard" replace /> : <Onboarding />} />
 
       {/* DASHBOARD */}
-      <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
+      <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      <Route path="/events" element={<ProtectedRoute><CreateEvent /></ProtectedRoute>} />
+      <Route path="/event-list" element={<ProtectedRoute><EventList /></ProtectedRoute>} />
+      <Route path="/marketplace" element={<ProtectedRoute><Marketplace /></ProtectedRoute>} />
+      <Route path="/venue-marketplace" element={<ProtectedRoute><VenueMarketplace /></ProtectedRoute>} />
+      <Route path="/guests" element={<ProtectedRoute><GuestManagement /></ProtectedRoute>} />
+      <Route path="/budget" element={<ProtectedRoute><BudgetManagement /></ProtectedRoute>} />
+      <Route path="/messages" element={<ProtectedRoute><Messaging /></ProtectedRoute>} />
+      <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
+      <Route path="/payments" element={<ProtectedRoute><OmaPay /></ProtectedRoute>} />
+      <Route path="/calendar" element={<ProtectedRoute><CalendarView /></ProtectedRoute>} />
+      <Route path="/oma-ai" element={<ProtectedRoute><OmaAI /></ProtectedRoute>} />
+      <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
+      <Route path="/cloud" element={<ProtectedRoute><OmaCloud /></ProtectedRoute>} />
+      <Route path="/community" element={<ProtectedRoute><Community /></ProtectedRoute>} />
+      <Route path="/social" element={<ProtectedRoute><SocialFeed /></ProtectedRoute>} />
+      <Route path="/admin" element={<ProtectedRoute><AdminPanel /></ProtectedRoute>} />
+      <Route path="/enterprise-dashboard" element={<ProtectedRoute><EnterpriseDashboard /></ProtectedRoute>} />
 
-      <Route
-        path="/events"
-        element={
-          <ProtectedRoute>
-            <CreateEvent />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/marketplace"
-        element={
-          <ProtectedRoute>
-            <Marketplace />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/messages"
-        element={
-          <ProtectedRoute>
-            <WorkspacePage
-              title="Messages"
-              description="Stay connected with clients, vendors, and your internal team in one inbox."
-              highlights={[
-                { title: "Unread", value: "08" },
-                { title: "Vendors", value: "14 threads" },
-                { title: "Response time", value: "12 min" },
-              ]}
-            />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/notifications"
-        element={
-          <ProtectedRoute>
-            <WorkspacePage
-              title="Notifications"
-              description="Track approvals, guest updates, deadlines, and booking changes from a single place."
-              highlights={[
-                { title: "New alerts", value: "06" },
-                { title: "Approvals", value: "03 pending" },
-                { title: "Today", value: "09 updates" },
-              ]}
-            />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/payments"
-        element={
-          <ProtectedRoute>
-            <WorkspacePage
-              title="Payments"
-              description="Monitor invoices, deposits, and settlement progress with secure payment visibility."
-              highlights={[
-                { title: "Processed", value: "NGN 2.4M" },
-                { title: "Pending", value: "05 invoices" },
-                { title: "Escrow", value: "02 releases" },
-              ]}
-            />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/oma-ai"
-        element={
-          <ProtectedRoute>
-            <OmaAI />
-          </ProtectedRoute>
-        }
-      />
+      {/* MARKETING PAGES */}
+      <Route path="/about" element={<About />} />
+      <Route path="/pricing" element={<Pricing />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/faqs" element={<FAQs />} />
+      <Route path="/blog" element={<Blog />} />
+      <Route path="/careers" element={<Careers />} />
 
       {/* SECONDARY PAGES */}
       <Route path="/planners" element={<Planners />} />
@@ -980,10 +940,7 @@ function App() {
       <Route path="/enterprise" element={<Enterprise />} />
 
       {/* FALLBACK */}
-      <Route
-        path="*"
-        element={<Navigate to={user ? authenticatedHome : "/"} replace />}
-      />
+      <Route path="*" element={<Navigate to={user ? authenticatedHome : "/"} replace />} />
     </Routes>
   );
 }

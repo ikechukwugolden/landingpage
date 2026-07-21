@@ -5,7 +5,9 @@ import {
   Wallet,
   CheckCircle2,
   ArrowRight,
+  Sparkles,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import "../index.css";
 import "../secondary-pages.css";
@@ -72,13 +74,13 @@ export default function Planners() {
               </p>
 
               <div className="planner-actions">
-                <button className="btn-primary">
-                  Start Planning
-                </button>
+                <Link to="/signup" className="btn-primary">
+                  <Sparkles size={18} /> Start Planning
+                </Link>
 
-                <button className="btn-secondary">
+                <Link to="/dashboard" className="btn-secondary">
                   Explore Dashboard
-                </button>
+                </Link>
               </div>
 
               {/* STATS */}
@@ -221,13 +223,14 @@ export default function Planners() {
                 payments, AI, and analytics into one ecosystem.
               </p>
 
-              <button
+              <Link
+                to="/signup"
                 className="btn-primary"
-                style={{ marginTop: "2rem" }}
+                style={{ marginTop: "2rem", display: "inline-flex" }}
               >
                 Join OMA
                 <ArrowRight size={18} />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -253,13 +256,13 @@ export default function Planners() {
           </p>
 
           <div className="cta-actions">
-            <button className="btn-primary">
-              Get Started
-            </button>
+            <Link to="/signup" className="btn-primary">
+              <Sparkles size={18} /> Get Started
+            </Link>
 
-            <button className="btn-secondary">
+            <Link to="/contact" className="btn-secondary">
               Book Demo
-            </button>
+            </Link>
           </div>
         </div>
       </section>
